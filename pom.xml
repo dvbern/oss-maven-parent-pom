@@ -14,15 +14,14 @@
   ~ limitations under the License.
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>ch.dvbern.oss.maven</groupId>
 	<artifactId>parent</artifactId>
 	<packaging>pom</packaging>
 	<name>Maven OSS Parent POM der DV Bern AG</name>
-	<version>1.0.0-rc1-SNAPSHOT</version>
+	<version>1.0.0-rc2-SNAPSHOT</version>
 
 	<description>Maven Einstellung, die allgemeine Gueltigkeit fuer die Open-Source-Projekte der DV Bern AG haben</description>
 	<organization>
@@ -589,9 +588,9 @@
 		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
 		<maven-deploy-plugin.deployAtEnd>true</maven-deploy-plugin.deployAtEnd>
 		<maven-deploy-plugin.skip>false</maven-deploy-plugin.skip>
-		<maven-deploy-plugin.altDeploymentRepository/>
-		<maven-deploy-plugin.altReleaseDeploymentRepository/>
-		<maven-deploy-plugin.altSnapshotDeploymentRepository/>
+		<maven-deploy-plugin.altDeploymentRepository />
+		<maven-deploy-plugin.altReleaseDeploymentRepository />
+		<maven-deploy-plugin.altSnapshotDeploymentRepository />
 
 		<!--
 			  maven-ear-plugin
@@ -634,14 +633,14 @@
 			no version, or snapshots, etc. The plugins should be specified in the
 			form: group:artifactId.
 		-->
-		<maven-enforcer-plugin.requirePluginVersions.unCheckedPlugins/>
+		<maven-enforcer-plugin.requirePluginVersions.unCheckedPlugins />
 		<!--
 		  A list of additional plugins to enforce have versions. These are
 		  plugins that may not be in the poms but are used anyway, like help,
 		  eclipse etc. The plugins should be specified in the form:
 		  group:artifactId.
 		-->
-		<maven-enforcer-plugin.requirePluginVersions.additionalPlugins/>
+		<maven-enforcer-plugin.requirePluginVersions.additionalPlugins />
 		<!--
 					  Beanshell (http://www.beanshell.org/) Script. Can be used to write ad-hoc enforcing rules. Example:
 
@@ -694,7 +693,7 @@
 		-->
 		<maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
 		<!-- wird vom Java8-Profil ueberschrieben -->
-		<maven-javadoc-plugin.additionalparam/>
+		<maven-javadoc-plugin.additionalparam />
 
 		<!--
 			  maven-license-plugin
