@@ -31,6 +31,10 @@
 		<url>http://www.dvbern.ch/</url>
 	</organization>
 
+	<!-- Release bauen:
+		mvn -U jgitflow:release-start jgitflow:release-finish
+	-->
+
 	<profiles>
 		<profile>
 			<id>doclint-java8-disable</id>
