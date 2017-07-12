@@ -405,6 +405,51 @@
 				</executions>
 			</plugin>
 
+			<plugin>
+				<groupId>external.atlassian.jgitflow</groupId>
+				<artifactId>jgitflow-maven-plugin</artifactId>
+				<version>${jgitflow-maven-plugin.version}</version>
+				<configuration>
+					<!-- ohne aktuellen Master das macht Release-Bauen keinen Sinn -->
+					<pullMaster>true</pullMaster>
+
+					<!-- Multi-Modul-Projekte: Versionsnummern in alle Module uebernehmen -->
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+
+					<!-- Snapshots sind bei den *-start goals noch erlaubt (z.B. fuer Submodule!),
+					bei den *-finish nicht mehr, siehe unten -->
+					<allowSnapshots>true</allowSnapshots>
+
+					<!-- Build/Deploy wird von Bamboo gemacht,
+					nach dem finish werden alle notwendigen Branches/Tags gepusht -->
+					<noReleaseBuild>true</noReleaseBuild>
+					<noHotfixBuild>true</noHotfixBuild>
+					<noFeatureBuild>true</noFeatureBuild>
+					<pushReleases>true</pushReleases>
+					<pushHotfixes>true</pushHotfixes>
+					<pushFeatures>true</pushFeatures>
+					<!-- Diese goals werden bei release-finish ausgefuehrt. (z.B. Enforcer haengt per Default an verify) -->
+					<goals>clean verify</goals>
+
+					<!-- Fast Forward merges verhindern, gibt schoenere Merge-Trees -->
+					<suppressFastForward>true</suppressFastForward>
+					<!-- Force lf line-endings in pom.xml -->
+					<eol>lf</eol>
+					<!-- Nutzt das SSH-Keystore-Passwort vom OS -->
+					<enableSshAgent>true</enableSshAgent>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>release-finish</goal>
+							<goal>hotfix-finish</goal>
+						</goals>
+						<configuration>
+							<allowSnapshots>false</allowSnapshots>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 
 	</build>
@@ -704,6 +749,11 @@
 		-->
 		<taglist-maven-plugin.version>2.4</taglist-maven-plugin.version>
 
+
+		<!--
+			jgitflow-maven-plugin
+		-->
+		<jgitflow-maven-plugin.version>1.0-m5.1</jgitflow-maven-plugin.version>
 	</properties>
 
 </project>
