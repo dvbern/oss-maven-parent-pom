@@ -727,7 +727,7 @@
         <!--
 			  maven-surefire-report-plugin
 		-->
-        <maven-surefire-report-plugin.version>2.19</maven-surefire-report-plugin.version>
+        <maven-surefire-report-plugin.version>2.20</maven-surefire-report-plugin.version>
 
         <!--
 			  maven-war-plugin
