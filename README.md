@@ -1,6 +1,6 @@
 # oss-maven-parent-pom
 
-This repository provides a Parent-POM usable for all our OpenSource libraries.
+This repository provides a Parent-POM usable for all DV Bern Open Source libraries.
 
 ## Getting Started
 
