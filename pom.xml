@@ -30,7 +30,6 @@
     </organization>
 
     <!-- Release bauen:
-        Property code-conventions.version anpassen (sonst schlaegt der Enforcer fehlt, der das Prueft :) )
 		mvn -U jgitflow:release-start jgitflow:release-finish
 	-->
 
@@ -627,8 +626,6 @@
 	 -->
     <properties>
         <!--
-        BEIM RELEASEN ANPASSSEN
-
         Diese Version muss der ${project.version} entsprechen. Leider kann sie nicht per Variable
         ${project.version} gesetzt werden, weil dann erbende Projekte die ${project.version} überschreiben.
          -->
