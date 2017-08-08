@@ -30,7 +30,11 @@
     </organization>
 
     <!-- Release bauen:
-		mvn -U jgitflow:release-start jgitflow:release-finish -DupdateDependencies=false
+		mvn -U jgitflow:release-start -DupdateDependencies=false
+		manually (release branch): update code-conventions.version to next release version
+        manually (release branch): update child-pom version to next release version
+        mvn -U jgitflow:release-finish -DnoReleaseBuild=false -DupdateDependencies=false -DautoVersionSubmodules=false
+        manually (develop branch): set code-conventions.version to snaphsot version
 	-->
 
     <modules>
