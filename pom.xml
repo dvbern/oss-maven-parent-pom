@@ -642,7 +642,7 @@
         Diese Version muss der ${project.version} entsprechen. Leider kann sie nicht per Variable
         ${project.version} gesetzt werden, weil dann erbende Projekte die ${project.version} überschreiben.
          -->
-        <code-conventions.version>1.0.4-SNAPSHOT</code-conventions.version>
+        <code-conventions.version>1.0.4</code-conventions.version>
 
         <timestamp>${maven.build.timestamp}</timestamp>
 
