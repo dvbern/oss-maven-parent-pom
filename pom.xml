@@ -21,7 +21,7 @@
     <artifactId>parent</artifactId>
     <packaging>pom</packaging>
     <name>Maven OSS Parent POM der DV Bern AG</name>
-	<version>1.0.3</version>
+	<version>1.0.4</version>
 
     <description>Maven Einstellung, die allgemeine Gueltigkeit fuer die Open-Source-Projekte der DV Bern AG haben</description>
     <organization>
@@ -30,7 +30,11 @@
     </organization>
 
     <!-- Release bauen:
-		mvn -U jgitflow:release-start jgitflow:release-finish -DupdateDependencies=false
+		mvn -U jgitflow:release-start -DupdateDependencies=false
+		manually (release branch): update code-conventions.version to next release version
+        manually (release branch): update child-pom version to next release version
+        mvn -U jgitflow:release-finish -DnoReleaseBuild=false -DupdateDependencies=false -DautoVersionSubmodules=false
+        manually (develop branch): set code-conventions.version to snaphsot version
 	-->
 
     <modules>
@@ -642,7 +646,7 @@
         Diese Version muss der ${project.version} entsprechen. Leider kann sie nicht per Variable
         ${project.version} gesetzt werden, weil dann erbende Projekte die ${project.version} überschreiben.
          -->
-        <code-conventions.version>1.0.3</code-conventions.version>
+        <code-conventions.version>1.0.4</code-conventions.version>
 
         <timestamp>${maven.build.timestamp}</timestamp>
 
