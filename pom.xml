@@ -30,7 +30,7 @@
     </organization>
 
     <!-- Release bauen:
-		mvn -U jgitflow:release-start jgitflow:release-finish
+		mvn -U jgitflow:release-start jgitflow:release-finish -DupdateDependencies=false
 	-->
 
     <modules>
