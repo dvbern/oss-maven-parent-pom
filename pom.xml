@@ -21,7 +21,7 @@
     <artifactId>parent</artifactId>
     <packaging>pom</packaging>
     <name>Maven OSS Parent POM der DV Bern AG</name>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 
     <description>Maven Einstellung, die allgemeine Gueltigkeit fuer die Open-Source-Projekte der DV Bern AG haben</description>
     <organization>
@@ -30,8 +30,7 @@
     </organization>
 
     <!-- Release bauen:
-        Property code-conventions.version anpassen (sonst schlaegt der Enforcer fehlt, der das Prueft :) )
-		mvn -U jgitflow:release-start jgitflow:release-finish
+		mvn -U jgitflow:release-start jgitflow:release-finish -DupdateDependencies=false
 	-->
 
     <modules>
@@ -330,14 +329,21 @@
                     <artifactId>maven-pmd-plugin</artifactId>
                     <version>${maven-pmd-plugin.version}</version>
                     <executions>
-                    <execution>
-                        <id>pmd</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                        <execution>
+                            <id>pmd</id>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>ch.dvbern.oss.maven</groupId>
+                            <artifactId>code-conventions</artifactId>
+                            <version>${code-conventions.version}</version>
+                        </dependency>
+                    </dependencies>
                     <configuration>
                         <skip>${skip-code-validation}</skip>
                         <failOnViolation>true</failOnViolation>
@@ -355,14 +361,21 @@
                     <artifactId>findbugs-maven-plugin</artifactId>
                     <version>${findbugs-maven-plugin.version}</version>
                     <executions>
-                    <execution>
-                        <id>findbugs</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                        <execution>
+                            <id>findbugs</id>
+                            <phase>compile</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>ch.dvbern.oss.maven</groupId>
+                            <artifactId>code-conventions</artifactId>
+                            <version>${code-conventions.version}</version>
+                        </dependency>
+                    </dependencies>
                     <configuration>
                         <skip>${skip-code-validation}</skip>
                         <!--
@@ -403,15 +416,14 @@
                         <excludes>**/target/**/*</excludes>
                     </configuration>
                     <executions>
-                    <execution>
-                        <id>checkstyle-check</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-
-                </executions>
+                        <execution>
+                            <id>checkstyle-check</id>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                     <dependencies>
                         <dependency>
                             <groupId>com.puppycrawl.tools</groupId>
@@ -627,12 +639,10 @@
 	 -->
     <properties>
         <!--
-        BEIM RELEASEN ANPASSSEN
-
         Diese Version muss der ${project.version} entsprechen. Leider kann sie nicht per Variable
         ${project.version} gesetzt werden, weil dann erbende Projekte die ${project.version} überschreiben.
          -->
-        <code-conventions.version>1.0.2</code-conventions.version>
+        <code-conventions.version>1.0.3</code-conventions.version>
 
         <timestamp>${maven.build.timestamp}</timestamp>
 
