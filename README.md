@@ -4,8 +4,15 @@ This repository provides a Parent-POM usable for all DV Bern Open Source librari
 
 ## Getting Started
 
-These instructions will get you an overview on how to implement and use the dvbern-lib-beanvalidation library. 
-See further down for installing or deployment notes.
+Specify the parent in your root pom, e.g.:
+
+```xml
+<parent>
+	<groupId>ch.dvbern.oss.maven</groupId>
+	<artifactId>parent</artifactId>
+	<version>1.0.3</version>
+</parent>
+```
 
 ## Built With
 
