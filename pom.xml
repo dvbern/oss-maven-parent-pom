@@ -476,7 +476,6 @@
             <!--
 				   maven-source-plugin Always create a source.jar where applicable
 			-->
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -711,7 +710,7 @@
         <!--
 			  maven-compiler-plugin
 		-->
-        <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
         <maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
         <maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
         <maven-compiler-plugin.debug>true</maven-compiler-plugin.debug>
@@ -719,7 +718,7 @@
         <!--
 			  maven-dependency-plugin
 		-->
-        <maven-dependency-plugin.version>2.10</maven-dependency-plugin.version>
+        <maven-dependency-plugin.version>3.0.2</maven-dependency-plugin.version>
 
         <!--
 			  maven-deploy-plugin
@@ -734,12 +733,12 @@
         <!--
 			  maven-ear-plugin
 		-->
-        <maven-ear-plugin.version>2.9</maven-ear-plugin.version>
+        <maven-ear-plugin.version>2.10.1</maven-ear-plugin.version>
 
         <!--
 			  maven-ejb-plugin
 		-->
-        <maven-ejb-plugin.version>2.5.1</maven-ejb-plugin.version>
+        <maven-ejb-plugin.version>3.0.0</maven-ejb-plugin.version>
 
         <!--
 			  maven-enforcer-plugin
@@ -801,7 +800,7 @@
         <!--
 			  maven-failsafe-plugin
 		-->
-        <maven-failsafe-plugin.version>2.19</maven-failsafe-plugin.version>
+        <maven-failsafe-plugin.version>2.20.1</maven-failsafe-plugin.version>
 
         <!--
 			  findbugs-maven-plugin
@@ -816,7 +815,7 @@
         <!--
 			  maven-jar-plugin
 		-->
-        <maven-jar-plugin.version>2.6</maven-jar-plugin.version>
+        <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
 
         <!--
 			  maven-jxr-plugin
@@ -826,7 +825,7 @@
         <!--
 			  maven-javadoc-plugin
 		-->
-        <maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
         <!-- wird vom Java8-Profil ueberschrieben -->
         <maven-javadoc-plugin.additionalparam />
 
@@ -844,12 +843,12 @@
         <!--
 			  maven-project-info-reports-plugin
 		-->
-        <maven-project-info-reports-plugin.version>2.8.1</maven-project-info-reports-plugin.version>
+        <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
 
         <!--
 			  maven-resources-plugin
 		-->
-        <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
+        <maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
 
         <!--
 			  maven-site-plugin
@@ -867,17 +866,17 @@
         <!--
 			  maven-surefire-plugin
 		-->
-        <maven-surefire-plugin.version>2.19</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>2.20.1</maven-surefire-plugin.version>
 
         <!--
 			  maven-surefire-report-plugin
 		-->
-        <maven-surefire-report-plugin.version>2.20</maven-surefire-report-plugin.version>
+        <maven-surefire-report-plugin.version>2.20.1</maven-surefire-report-plugin.version>
 
         <!--
 			  maven-war-plugin
 		-->
-        <maven-war-plugin.version>2.6</maven-war-plugin.version>
+        <maven-war-plugin.version>3.2.0</maven-war-plugin.version>
 
         <!--
 			  taglist-maven-plugin
