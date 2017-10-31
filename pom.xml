@@ -484,7 +484,7 @@
                 <executions>
                     <execution>
                         <id>attach-sources</id>
-                        <phase>deploy</phase>
+                        <phase>verify</phase>
                         <goals>
                             <goal>jar-no-fork</goal>
                         </goals>
@@ -862,7 +862,7 @@
         <!--
 			  maven-source-plugin
 		-->
-        <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
 
         <!--
 			  maven-surefire-plugin
