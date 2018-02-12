@@ -29,6 +29,14 @@
         <url>http://www.dvbern.ch/</url>
     </organization>
 
+    <licenses>
+        <license>
+            <name>he Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <modules>
         <module>code-conventions</module>
     </modules>
