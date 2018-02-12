@@ -540,6 +540,7 @@
                     <!-- Snapshots sind bei den *-start goals noch erlaubt (z.B. fuer Submodule!),
 					bei den *-finish nicht mehr, siehe unten -->
                     <allowSnapshots>true</allowSnapshots>
+                    <allowUntracked>true</allowUntracked>
 
                     <!-- Build/Deploy wird von CI Server gemacht, nach dem finish werden alle notwendigen Branches/Tags gepusht -->
                     <noReleaseBuild>true</noReleaseBuild>
