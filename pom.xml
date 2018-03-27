@@ -569,6 +569,14 @@
                         <versionTagPrefix />
                     </flowInitContext>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <!-- Use secure crypto algorithms: https://ecosystem.atlassian.net/browse/MJF-299 -->
+                        <groupId>com.jcraft</groupId>
+                        <artifactId>jsch</artifactId>
+                        <version>0.1.54</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
                         <goals>
