@@ -21,7 +21,7 @@
     <artifactId>parent</artifactId>
     <packaging>pom</packaging>
     <name>Maven OSS Parent POM der DV Bern AG</name>
-	<version>1.0.5</version>
+	<version>1.0.6</version>
 
     <description>Maven Einstellung, die allgemeine Gueltigkeit fuer die Open-Source-Projekte der DV Bern AG haben</description>
     <organization>
@@ -540,6 +540,7 @@
                     <!-- Snapshots sind bei den *-start goals noch erlaubt (z.B. fuer Submodule!),
 					bei den *-finish nicht mehr, siehe unten -->
                     <allowSnapshots>true</allowSnapshots>
+                    <allowUntracked>true</allowUntracked>
 
                     <!-- Build/Deploy wird von CI Server gemacht, nach dem finish werden alle notwendigen Branches/Tags gepusht -->
                     <noReleaseBuild>true</noReleaseBuild>
@@ -568,6 +569,14 @@
                         <versionTagPrefix />
                     </flowInitContext>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <!-- Use secure crypto algorithms: https://ecosystem.atlassian.net/browse/MJF-299 -->
+                        <groupId>com.jcraft</groupId>
+                        <artifactId>jsch</artifactId>
+                        <version>0.1.54</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
                         <goals>
@@ -655,7 +664,7 @@
         Diese Version muss der ${project.version} entsprechen. Leider kann sie nicht per Variable
         ${project.version} gesetzt werden, weil dann erbende Projekte die ${project.version} überschreiben.
          -->
-        <code-conventions.version>1.0.5</code-conventions.version>
+        <code-conventions.version>1.0.6</code-conventions.version>
 
         <timestamp>${maven.build.timestamp}</timestamp>
 
@@ -681,8 +690,8 @@
 			  Dependency Management Versions
 			  ===========================================================================================
 		-->
-        <wagon-ssh.version>2.10</wagon-ssh.version>
-        <wagon-webdav-jackrabbit.version>2.10</wagon-webdav-jackrabbit.version>
+        <wagon-ssh.version>3.0.0</wagon-ssh.version>
+        <wagon-webdav-jackrabbit.version>3.0.0</wagon-webdav-jackrabbit.version>
 
         <!--
 			  ===========================================================================================
@@ -693,8 +702,8 @@
         <!--
 			  maven-checkstyle-plugin
 		-->
-        <maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
-        <maven-checkstyle.version>8.1</maven-checkstyle.version>
+        <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+        <maven-checkstyle.version>8.8</maven-checkstyle.version>
 
         <!--
 			  maven-clean-plugin
@@ -727,7 +736,7 @@
         <!--
 			  maven-ear-plugin
 		-->
-        <maven-ear-plugin.version>2.10.1</maven-ear-plugin.version>
+        <maven-ear-plugin.version>3.0.0</maven-ear-plugin.version>
 
         <!--
 			  maven-ejb-plugin
@@ -794,7 +803,7 @@
         <!--
 			  maven-failsafe-plugin
 		-->
-        <maven-failsafe-plugin.version>2.20.1</maven-failsafe-plugin.version>
+        <maven-failsafe-plugin.version>2.21.0</maven-failsafe-plugin.version>
 
         <!--
 			  findbugs-maven-plugin
@@ -819,7 +828,7 @@
         <!--
 			  maven-javadoc-plugin
 		-->
-        <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.0.0</maven-javadoc-plugin.version>
         <!-- wird vom Java8-Profil ueberschrieben -->
         <maven-javadoc-plugin.additionalparam />
 
@@ -832,7 +841,7 @@
         <!--
 			  maven-pmd-plugin
 		-->
-        <maven-pmd-plugin.version>3.8</maven-pmd-plugin.version>
+        <maven-pmd-plugin.version>3.9.0</maven-pmd-plugin.version>
 
         <!--
 			  maven-project-info-reports-plugin
@@ -847,7 +856,7 @@
         <!--
 			  maven-site-plugin
 		-->
-        <maven-site-plugin.version>3.6</maven-site-plugin.version>
+        <maven-site-plugin.version>3.7</maven-site-plugin.version>
         <maven-site-plugin.locales>de_CH</maven-site-plugin.locales>
         <maven-site-plugin.skip>false</maven-site-plugin.skip>
         <maven-site-plugin.skipDeploy>false</maven-site-plugin.skipDeploy>
@@ -860,12 +869,12 @@
         <!--
 			  maven-surefire-plugin
 		-->
-        <maven-surefire-plugin.version>2.20.1</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
 
         <!--
 			  maven-surefire-report-plugin
 		-->
-        <maven-surefire-report-plugin.version>2.20.1</maven-surefire-report-plugin.version>
+        <maven-surefire-report-plugin.version>2.21.0</maven-surefire-report-plugin.version>
 
         <!--
 			  maven-war-plugin
