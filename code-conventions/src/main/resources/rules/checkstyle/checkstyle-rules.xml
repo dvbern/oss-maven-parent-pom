@@ -9,7 +9,6 @@
 			<property name="checkFormat" value="$1"/>
 		</module>
 		<module name="SuppressWarningsHolder"/>
-		<module name="FileContentsHolder"/>
 		<module name="CyclomaticComplexity">
 			<property name="severity" value="warning"/>
 			<property name="max" value="10"/>
