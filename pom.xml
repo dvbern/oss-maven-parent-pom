@@ -21,7 +21,7 @@
     <artifactId>parent</artifactId>
     <packaging>pom</packaging>
     <name>Maven OSS Parent POM der DV Bern AG</name>
-	<version>1.0.6</version>
+	<version>1.1.0</version>
 
     <description>Maven Einstellung, die allgemeine Gueltigkeit fuer die Open-Source-Projekte der DV Bern AG haben</description>
     <organization>
@@ -664,7 +664,7 @@
         Diese Version muss der ${project.version} entsprechen. Leider kann sie nicht per Variable
         ${project.version} gesetzt werden, weil dann erbende Projekte die ${project.version} überschreiben.
          -->
-        <code-conventions.version>1.0.6</code-conventions.version>
+        <code-conventions.version>1.1.0</code-conventions.version>
 
         <timestamp>${maven.build.timestamp}</timestamp>
 
@@ -690,8 +690,8 @@
 			  Dependency Management Versions
 			  ===========================================================================================
 		-->
-        <wagon-ssh.version>3.0.0</wagon-ssh.version>
-        <wagon-webdav-jackrabbit.version>3.0.0</wagon-webdav-jackrabbit.version>
+        <wagon-ssh.version>3.1.0</wagon-ssh.version>
+        <wagon-webdav-jackrabbit.version>3.1.0</wagon-webdav-jackrabbit.version>
 
         <!--
 			  ===========================================================================================
@@ -703,12 +703,12 @@
 			  maven-checkstyle-plugin
 		-->
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
-        <maven-checkstyle.version>8.8</maven-checkstyle.version>
+        <maven-checkstyle.version>8.10.1</maven-checkstyle.version>
 
         <!--
 			  maven-clean-plugin
 		-->
-        <maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
+        <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
 
         <!--
 			  maven-compiler-plugin
@@ -721,7 +721,7 @@
         <!--
 			  maven-dependency-plugin
 		-->
-        <maven-dependency-plugin.version>3.0.2</maven-dependency-plugin.version>
+        <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
 
         <!--
 			  maven-deploy-plugin
@@ -736,12 +736,12 @@
         <!--
 			  maven-ear-plugin
 		-->
-        <maven-ear-plugin.version>3.0.0</maven-ear-plugin.version>
+        <maven-ear-plugin.version>3.0.1</maven-ear-plugin.version>
 
         <!--
 			  maven-ejb-plugin
 		-->
-        <maven-ejb-plugin.version>3.0.0</maven-ejb-plugin.version>
+        <maven-ejb-plugin.version>3.0.1</maven-ejb-plugin.version>
 
         <!--
 			  maven-enforcer-plugin
@@ -808,7 +808,7 @@
         <!--
 			  findbugs-maven-plugin
 		-->
-        <findbugs-maven-plugin.version>3.0.4</findbugs-maven-plugin.version>
+        <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
 
         <!--
 			  maven-install-plugin
@@ -818,7 +818,7 @@
         <!--
 			  maven-jar-plugin
 		-->
-        <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
+        <maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
 
         <!--
 			  maven-jxr-plugin
@@ -828,7 +828,7 @@
         <!--
 			  maven-javadoc-plugin
 		-->
-        <maven-javadoc-plugin.version>3.0.0</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
         <!-- wird vom Java8-Profil ueberschrieben -->
         <maven-javadoc-plugin.additionalparam />
 
@@ -841,7 +841,7 @@
         <!--
 			  maven-pmd-plugin
 		-->
-        <maven-pmd-plugin.version>3.9.0</maven-pmd-plugin.version>
+        <maven-pmd-plugin.version>3.10.0</maven-pmd-plugin.version>
 
         <!--
 			  maven-project-info-reports-plugin
@@ -851,7 +851,7 @@
         <!--
 			  maven-resources-plugin
 		-->
-        <maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
+        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
 
         <!--
 			  maven-site-plugin
@@ -879,7 +879,7 @@
         <!--
 			  maven-war-plugin
 		-->
-        <maven-war-plugin.version>3.2.0</maven-war-plugin.version>
+        <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
 
         <!--
 			  taglist-maven-plugin
