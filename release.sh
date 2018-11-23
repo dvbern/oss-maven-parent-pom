@@ -21,6 +21,8 @@ fi
 RELEASE_VERSION=$1
 SNAPSHOT_VERSION="$2"-SNAPSHOT
 
+git checkout develop
+
 # maven-enforcer-plugin check fails when updateDependencies is activated.
 # Thus we have to update the versions in such a complicated fashion.
 mvn -U jgitflow:release-start -DreleaseVersion=${RELEASE_VERSION} -DdevelopmentVersion=${SNAPSHOT_VERSION} -DupdateDependencies=false -DallowUntracked=true
