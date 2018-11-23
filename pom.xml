@@ -110,7 +110,7 @@
                                 <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             </manifest>
                             <manifestEntries>
-                                <Build-Timestamp>${timestamp}</Build-Timestamp>
+                                <Build-Timestamp>${maven.build.timestamp}</Build-Timestamp>
                                 <OS-Name>${os.name}</OS-Name>
                                 <Artifact-Name>${project.name}</Artifact-Name>
                                 <Version>${project.version}</Version>
@@ -132,7 +132,7 @@
                     <configuration>
                         <archive>
                             <manifestEntries>
-                                <Build-Timestamp>${timestamp}</Build-Timestamp>
+                                <Build-Timestamp>${maven.build.timestamp}</Build-Timestamp>
                                 <OS-Name>${os.name}</OS-Name>
                                 <Artifact-Name>${project.name}</Artifact-Name>
                                 <Version>${project.version}</Version>
@@ -153,7 +153,7 @@
                     <configuration>
                         <archive>
                             <manifestEntries>
-                                <Build-Timestamp>${timestamp}</Build-Timestamp>
+                                <Build-Timestamp>${maven.build.timestamp}</Build-Timestamp>
                                 <OS-Name>${os.name}</OS-Name>
                                 <Artifact-Name>${project.name}</Artifact-Name>
                                 <Version>${project.version}</Version>
@@ -452,7 +452,7 @@
                     <configuration>
                         <archive>
                             <manifestEntries>
-                                <Build-Timestamp>${timestamp}</Build-Timestamp>
+                                <Build-Timestamp>${maven.build.timestamp}</Build-Timestamp>
                                 <OS-Name>${os.name}</OS-Name>
                                 <Artifact-Name>${project.name}</Artifact-Name>
                                 <Version>${project.version}</Version>
@@ -666,6 +666,7 @@
          -->
         <code-conventions.version>1.1.1-SNAPSHOT</code-conventions.version>
 
+        <!-- backwards compatibility to old maven-timestamp-plugin -->
         <timestamp>${maven.build.timestamp}</timestamp>
 
         <!--
