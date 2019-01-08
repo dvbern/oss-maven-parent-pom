@@ -358,7 +358,7 @@
                 </plugin>
 
                 <!--
-														findbugs-maven-plugin
+														findbugs-maven-plugin (for backwards compatibility)
 				-->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -395,8 +395,51 @@
                         <!-- Configures the directory in which the XML report is created -->
                         <findbugsXmlOutputDirectory>${project.build.directory}/findbugs</findbugsXmlOutputDirectory>
                         <failOnError>true</failOnError>
-                        <includeFilterFile>rules/findbugs/findbugs-includes.xml</includeFilterFile>
-                        <excludeFilterFile>rules/findbugs/findbugs-excludes.xml</excludeFilterFile>
+                        <includeFilterFile>rules/spotbugs/spotbugs-includes.xml</includeFilterFile>
+                        <excludeFilterFile>rules/spotbugs/spotbugs-excludes.xml</excludeFilterFile>
+                    </configuration>
+                </plugin>
+
+                <!--
+                                                        spotbugs-maven-plugin
+                -->
+                <plugin>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs-maven-plugin</artifactId>
+                    <version>${spotbugs-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>spotbugs</id>
+                            <phase>compile</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>ch.dvbern.oss.maven</groupId>
+                            <artifactId>code-conventions</artifactId>
+                            <version>${code-conventions.version}</version>
+                        </dependency>
+                    </dependencies>
+                    <configuration>
+                        <skip>${skip-code-validation}</skip>
+                        <!--
+						Enables analysis which takes more memory but finds more bugs.
+						If you run out of memory, changes the value of the effort element
+						to 'Low'.
+					    -->
+                        <effort>Max</effort>
+                        <!-- Reports all bugs (other values are medium and max) -->
+                        <threshold>Low</threshold>
+                        <!-- Produces XML report -->
+                        <xmlOutput>true</xmlOutput>
+                        <!-- Configures the directory in which the XML report is created -->
+                        <spotbugsXmlOutputDirectory>${project.build.directory}/spotbugs</spotbugsXmlOutputDirectory>
+                        <failOnError>true</failOnError>
+                        <includeFilterFile>rules/spotbugs/spotbugs-includes.xml</includeFilterFile>
+                        <excludeFilterFile>rules/spotbugs/spotbugs-excludes.xml</excludeFilterFile>
                     </configuration>
                 </plugin>
 
@@ -810,6 +853,11 @@
 			  findbugs-maven-plugin
 		-->
         <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
+
+ 		<!--
+              spotbugs-maven-plugin
+        -->
+        <spotbugs-maven-plugin.version>3.1.10</spotbugs-maven-plugin.version>
 
         <!--
 			  maven-install-plugin
