@@ -21,7 +21,7 @@
     <artifactId>parent</artifactId>
     <packaging>pom</packaging>
     <name>Maven OSS Parent POM der DV Bern AG</name>
-	<version>1.1.1</version>
+    <version>1.2.0</version>
 
     <description>Maven Einstellung, die allgemeine Gueltigkeit fuer die Open-Source-Projekte der DV Bern AG haben</description>
     <organization>
@@ -358,7 +358,7 @@
                 </plugin>
 
                 <!--
-														findbugs-maven-plugin
+														findbugs-maven-plugin (for backwards compatibility)
 				-->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -395,8 +395,51 @@
                         <!-- Configures the directory in which the XML report is created -->
                         <findbugsXmlOutputDirectory>${project.build.directory}/findbugs</findbugsXmlOutputDirectory>
                         <failOnError>true</failOnError>
-                        <includeFilterFile>rules/findbugs/findbugs-includes.xml</includeFilterFile>
-                        <excludeFilterFile>rules/findbugs/findbugs-excludes.xml</excludeFilterFile>
+                        <includeFilterFile>rules/spotbugs/spotbugs-includes.xml</includeFilterFile>
+                        <excludeFilterFile>rules/spotbugs/spotbugs-excludes.xml</excludeFilterFile>
+                    </configuration>
+                </plugin>
+
+                <!--
+                                                        spotbugs-maven-plugin
+                -->
+                <plugin>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs-maven-plugin</artifactId>
+                    <version>${spotbugs-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>spotbugs</id>
+                            <phase>compile</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>ch.dvbern.oss.maven</groupId>
+                            <artifactId>code-conventions</artifactId>
+                            <version>${code-conventions.version}</version>
+                        </dependency>
+                    </dependencies>
+                    <configuration>
+                        <skip>${skip-code-validation}</skip>
+                        <!--
+						Enables analysis which takes more memory but finds more bugs.
+						If you run out of memory, changes the value of the effort element
+						to 'Low'.
+					    -->
+                        <effort>Max</effort>
+                        <!-- Reports all bugs (other values are medium and max) -->
+                        <threshold>Low</threshold>
+                        <!-- Produces XML report -->
+                        <xmlOutput>true</xmlOutput>
+                        <!-- Configures the directory in which the XML report is created -->
+                        <spotbugsXmlOutputDirectory>${project.build.directory}/spotbugs</spotbugsXmlOutputDirectory>
+                        <failOnError>true</failOnError>
+                        <includeFilterFile>rules/spotbugs/spotbugs-includes.xml</includeFilterFile>
+                        <excludeFilterFile>rules/spotbugs/spotbugs-excludes.xml</excludeFilterFile>
                     </configuration>
                 </plugin>
 
@@ -574,7 +617,7 @@
                         <!-- Use secure crypto algorithms: https://ecosystem.atlassian.net/browse/MJF-299 -->
                         <groupId>com.jcraft</groupId>
                         <artifactId>jsch</artifactId>
-                        <version>0.1.54</version>
+                        <version>0.1.55</version>
                     </dependency>
                 </dependencies>
                 <executions>
@@ -625,7 +668,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>${maven-javadoc-plugin.version}</version>
-                <!-- Mit java 8 generiert dieses Plugin Standardmaessig Errors wenn nicht alle  Javadoc Parameter wei @return
+                <!-- Mit java 8 generiert dieses Plugin Standardmaessig Errors wenn nicht alle Javadoc Parameter wie @return
 				und @param ueberall ausgefuellt sind. Wir schalten dies aus da wir auch legacy Projekte haben oder einen anderen
 				javadoc style bevorzugen-->
                 <configuration>
@@ -664,7 +707,7 @@
         Diese Version muss der ${project.version} entsprechen. Leider kann sie nicht per Variable
         ${project.version} gesetzt werden, weil dann erbende Projekte die ${project.version} überschreiben.
          -->
-        <code-conventions.version>1.1.1</code-conventions.version>
+        <code-conventions.version>1.2.0</code-conventions.version>
 
         <!-- backwards compatibility to old maven-timestamp-plugin -->
         <timestamp>${maven.build.timestamp}</timestamp>
@@ -691,8 +734,8 @@
 			  Dependency Management Versions
 			  ===========================================================================================
 		-->
-        <wagon-ssh.version>3.1.0</wagon-ssh.version>
-        <wagon-webdav-jackrabbit.version>3.1.0</wagon-webdav-jackrabbit.version>
+        <wagon-ssh.version>3.3.1</wagon-ssh.version>
+        <wagon-webdav-jackrabbit.version>3.3.1</wagon-webdav-jackrabbit.version>
 
         <!--
 			  ===========================================================================================
@@ -704,7 +747,7 @@
 			  maven-checkstyle-plugin
 		-->
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
-        <maven-checkstyle.version>8.10.1</maven-checkstyle.version>
+        <maven-checkstyle.version>8.16</maven-checkstyle.version>
 
         <!--
 			  maven-clean-plugin
@@ -714,7 +757,7 @@
         <!--
 			  maven-compiler-plugin
 		-->
-        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
         <maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
         <maven-compiler-plugin.debug>true</maven-compiler-plugin.debug>
@@ -804,12 +847,17 @@
         <!--
 			  maven-failsafe-plugin
 		-->
-        <maven-failsafe-plugin.version>2.21.0</maven-failsafe-plugin.version>
+        <maven-failsafe-plugin.version>2.22.1</maven-failsafe-plugin.version>
 
         <!--
 			  findbugs-maven-plugin
 		-->
         <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
+
+ 		<!--
+              spotbugs-maven-plugin
+        -->
+        <spotbugs-maven-plugin.version>3.1.10</spotbugs-maven-plugin.version>
 
         <!--
 			  maven-install-plugin
@@ -824,7 +872,7 @@
         <!--
 			  maven-jxr-plugin
 		-->
-        <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
+        <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
 
         <!--
 			  maven-javadoc-plugin
@@ -836,18 +884,18 @@
         <!--
 			  maven-license-plugin
 		-->
-        <maven-license-plugin.version>1.9.0</maven-license-plugin.version>
+        <maven-license-plugin.version>3.0</maven-license-plugin.version>
         <maven-license-plugin.header>${basedir}/src/etc/header.txt</maven-license-plugin.header>
 
         <!--
 			  maven-pmd-plugin
 		-->
-        <maven-pmd-plugin.version>3.10.0</maven-pmd-plugin.version>
+        <maven-pmd-plugin.version>3.11.0</maven-pmd-plugin.version>
 
         <!--
 			  maven-project-info-reports-plugin
 		-->
-        <maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
+        <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
 
         <!--
 			  maven-resources-plugin
@@ -857,7 +905,7 @@
         <!--
 			  maven-site-plugin
 		-->
-        <maven-site-plugin.version>3.7</maven-site-plugin.version>
+        <maven-site-plugin.version>3.7.1</maven-site-plugin.version>
         <maven-site-plugin.locales>de_CH</maven-site-plugin.locales>
         <maven-site-plugin.skip>false</maven-site-plugin.skip>
         <maven-site-plugin.skipDeploy>false</maven-site-plugin.skipDeploy>
@@ -870,12 +918,12 @@
         <!--
 			  maven-surefire-plugin
 		-->
-        <maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
 
         <!--
 			  maven-surefire-report-plugin
 		-->
-        <maven-surefire-report-plugin.version>2.21.0</maven-surefire-report-plugin.version>
+        <maven-surefire-report-plugin.version>2.22.1</maven-surefire-report-plugin.version>
 
         <!--
 			  maven-war-plugin
