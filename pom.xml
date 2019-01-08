@@ -884,7 +884,7 @@
         <!--
 			  maven-license-plugin
 		-->
-        <maven-license-plugin.version>3.0</maven-license-plugin.version>
+        <maven-license-plugin.version>1.9.0</maven-license-plugin.version>
         <maven-license-plugin.header>${basedir}/src/etc/header.txt</maven-license-plugin.header>
 
         <!--
