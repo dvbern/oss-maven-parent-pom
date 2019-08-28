@@ -21,7 +21,7 @@
     <artifactId>parent</artifactId>
     <packaging>pom</packaging>
     <name>Maven OSS Parent POM der DV Bern AG</name>
-    <version>1.2.2-SNAPSHOT</version>
+    <version>2.0.0</version>
 
     <description>Maven Einstellung, die allgemeine Gueltigkeit fuer die Open-Source-Projekte der DV Bern AG haben</description>
     <organization>
@@ -569,7 +569,7 @@
             </plugin>
 
             <plugin>
-                <groupId>external.atlassian.jgitflow</groupId>
+                <groupId>ch.dvbern.oss.maven.jgitflow</groupId>
                 <artifactId>jgitflow-maven-plugin</artifactId>
                 <version>${jgitflow-maven-plugin.version}</version>
                 <configuration>
@@ -707,7 +707,7 @@
         Diese Version muss der ${project.version} entsprechen. Leider kann sie nicht per Variable
         ${project.version} gesetzt werden, weil dann erbende Projekte die ${project.version} überschreiben.
          -->
-        <code-conventions.version>1.2.2-SNAPSHOT</code-conventions.version>
+        <code-conventions.version>2.0.0</code-conventions.version>
 
         <!-- backwards compatibility to old maven-timestamp-plugin -->
         <timestamp>${maven.build.timestamp}</timestamp>
@@ -938,7 +938,7 @@
         <!--
 			jgitflow-maven-plugin
 		-->
-        <jgitflow-maven-plugin.version>1.0-m5.1</jgitflow-maven-plugin.version>
+        <jgitflow-maven-plugin.version>1.0-m6</jgitflow-maven-plugin.version>
     </properties>
 
 </project>
