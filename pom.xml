@@ -76,12 +76,6 @@
         </profile>
         <profile>
             <id>maven-central</id>
-            <properties>
-                <maven.repo.snapshots.oss.id>ossrh</maven.repo.snapshots.oss.id>
-                <maven.repo.snapshots.oss.url>https://oss.sonatype.org/content/repositories/snapshots</maven.repo.snapshots.oss.url>
-                <maven.repo.releases.oss.id>ossrh</maven.repo.releases.oss.id>
-                <maven.repo.releases.oss.url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</maven.repo.releases.oss.url>
-            </properties>
             <build>
                 <plugins>
                     <!-- maven-javadoc-plugin -->
@@ -96,6 +90,7 @@
                                     <goal>jar</goal>
                                 </goals>
                             </execution>
+                            <!-- configuration: see jenkins settings.xml -->
                         </executions>
                     </plugin>
 
@@ -112,6 +107,7 @@
                                     <goal>sign</goal>
                                 </goals>
                             </execution>
+                            <!-- configuration: see jenkins settings.xml -->
                         </executions>
                     </plugin>
 
@@ -131,6 +127,7 @@
                                 <id>deploy</id>
                             </execution>
                         </executions>
+                        <!-- configuration: see jenkins settings.xml -->
                     </plugin>
                 </plugins>
             </build>
