@@ -61,6 +61,67 @@
                 <skip-code-validation>true</skip-code-validation>
             </properties>
         </profile>
+        <profile>
+            <id>maven-central</id>
+            <properties>
+                <maven.repo.snapshots.oss.id>ossrh</maven.repo.snapshots.oss.id>
+                <maven.repo.snapshots.oss.url>https://oss.sonatype.org/content/repositories/snapshots</maven.repo.snapshots.oss.url>
+                <maven.repo.releases.oss.id>ossrh</maven.repo.releases.oss.id>
+                <maven.repo.releases.oss.url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</maven.repo.releases.oss.url>
+            </properties>
+            <build>
+                <plugins>
+                    <!-- maven-javadoc-plugin -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven-javadoc-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- maven-gpg-plugin -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven-gpg-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- nexus-staging-maven-plugin -->
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>${nexus-staging-maven-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>deploy</id>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
     <build>
@@ -614,19 +675,19 @@
 
     <distributionManagement>
         <repository>
-            <id>dvb.oss</id>
+            <id>${maven.repo.releases.oss.id}</id>
             <name>DV Bern Release Repository</name>
             <url>${maven.repo.releases.oss.url}</url>
         </repository>
         <snapshotRepository>
-            <id>dvb.oss.snapshots</id>
+            <id>${maven.repo.snapshots.oss.id}</id>
             <name>DV Bern Snapshots Repository</name>
             <layout>default</layout>
             <url>${maven.repo.snapshots.oss.url}</url>
             <uniqueVersion>true</uniqueVersion>
         </snapshotRepository>
         <site>
-            <id>dvb.oss.sites</id>
+            <id>${maven.repo.sites.oss.id}</id>
             <name>DV Bern Projektseiten</name>
             <url>${maven.repo.sites.oss.url}</url>
         </site>
@@ -648,9 +709,12 @@
 			  Global settings
 			  ===========================================================================================
 		-->
-        <!-- URLs-->
+        <!-- Repo IDs/URLs-->
+        <maven.repo.releases.oss.id>dvb.oss</maven.repo.releases.oss.id>
         <maven.repo.releases.oss.url>releases-url-set-by-CI</maven.repo.releases.oss.url>
+        <maven.repo.snapshots.oss.id>dvb.oss.snapshots</maven.repo.snapshots.oss.id>
         <maven.repo.snapshots.oss.url>snapshots-url-set-by-CI</maven.repo.snapshots.oss.url>
+        <maven.repo.sites.oss.id>dvb.oss.sites</maven.repo.sites.oss.id>
         <maven.repo.sites.oss.url>site-url-set-by-CI</maven.repo.sites.oss.url>
 
         <!--
@@ -811,6 +875,12 @@
 
         <!-- jgitflow-maven-plugin -->
         <jgitflow-maven-plugin.version>1.0-m6</jgitflow-maven-plugin.version>
+
+        <!-- nexus-staging-maven-plugin -->
+        <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
+
+        <!-- maven-gpg-plugin -->
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
     </properties>
 
 </project>
