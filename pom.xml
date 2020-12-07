@@ -19,23 +19,29 @@
 
     <groupId>ch.dvbern.oss.maven</groupId>
     <artifactId>parent</artifactId>
-    <packaging>pom</packaging>
-    <name>Maven OSS Parent POM der DV Bern AG</name>
     <version>2.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
+    <name>Maven OSS Parent POM der DV Bern AG</name>
     <description>Maven Einstellung, die allgemeine Gueltigkeit fuer die Open-Source-Projekte der DV Bern AG haben</description>
+
     <organization>
         <name>DV Bern AG</name>
-        <url>http://www.dvbern.ch/</url>
+        <url>https://www.dvbern.ch/</url>
     </organization>
 
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
             <url>https://www.apache.org/licenses/LICENSE-2.0</url>
-            <distribution>repo</distribution>
         </license>
     </licenses>
+
+    <scm>
+        <url>https://github.com/dvbern/oss-maven-parent-pom.git</url>
+        <connection>scm:git:https://github.com/dvbern/oss-maven-parent-pom.git</connection>
+        <developerConnection>scm:git:https://github.com/dvbern/oss-maven-parent-pom.git</developerConnection>
+    </scm>
 
     <modules>
         <module>code-conventions</module>
@@ -586,8 +592,8 @@
             </plugin>
 
         </plugins>
-
     </build>
+
     <reporting>
         <plugins>
             <plugin>
