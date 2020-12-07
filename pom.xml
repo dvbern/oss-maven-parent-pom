@@ -19,16 +19,29 @@
 
     <groupId>ch.dvbern.oss.maven</groupId>
     <artifactId>parent</artifactId>
-    <version>3.0.0</version>
+    <version>3.0.1</version>
     <packaging>pom</packaging>
 
     <name>Maven OSS Parent POM der DV Bern AG</name>
     <description>Maven Einstellung, die allgemeine Gueltigkeit fuer die Open-Source-Projekte der DV Bern AG haben</description>
+    <url>https://github.com/dvbern/oss-maven-parent-pom</url>
 
     <organization>
         <name>DV Bern AG</name>
         <url>https://www.dvbern.ch/</url>
     </organization>
+
+    <developers>
+        <developer>
+            <name>Christoph Linder</name>
+            <email>christoph.linder@dvbern.ch</email>
+            <organization>DV Bern AG</organization>
+            <roles>
+                <role>Developer</role>
+                <role>Architect</role>
+            </roles>
+        </developer>
+    </developers>
 
     <licenses>
         <license>
@@ -63,12 +76,6 @@
         </profile>
         <profile>
             <id>maven-central</id>
-            <properties>
-                <maven.repo.snapshots.oss.id>ossrh</maven.repo.snapshots.oss.id>
-                <maven.repo.snapshots.oss.url>https://oss.sonatype.org/content/repositories/snapshots</maven.repo.snapshots.oss.url>
-                <maven.repo.releases.oss.id>ossrh</maven.repo.releases.oss.id>
-                <maven.repo.releases.oss.url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</maven.repo.releases.oss.url>
-            </properties>
             <build>
                 <plugins>
                     <!-- maven-javadoc-plugin -->
@@ -83,6 +90,7 @@
                                     <goal>jar</goal>
                                 </goals>
                             </execution>
+                            <!-- configuration: see jenkins settings.xml -->
                         </executions>
                     </plugin>
 
@@ -99,6 +107,7 @@
                                     <goal>sign</goal>
                                 </goals>
                             </execution>
+                            <!-- configuration: see jenkins settings.xml -->
                         </executions>
                     </plugin>
 
@@ -118,6 +127,7 @@
                                 <id>deploy</id>
                             </execution>
                         </executions>
+                        <!-- configuration: see jenkins settings.xml -->
                     </plugin>
                 </plugins>
             </build>
@@ -699,7 +709,7 @@
         Diese Version muss der ${project.version} entsprechen. Leider kann sie nicht per Variable
         ${project.version} gesetzt werden, weil dann erbende Projekte die ${project.version} überschreiben.
          -->
-        <code-conventions.version>3.0.0</code-conventions.version>
+        <code-conventions.version>3.0.1</code-conventions.version>
 
         <!-- backwards compatibility to old maven-timestamp-plugin -->
         <timestamp>${maven.build.timestamp}</timestamp>
