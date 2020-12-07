@@ -24,11 +24,24 @@
 
     <name>Maven OSS Parent POM der DV Bern AG</name>
     <description>Maven Einstellung, die allgemeine Gueltigkeit fuer die Open-Source-Projekte der DV Bern AG haben</description>
+    <url>https://github.com/dvbern/oss-maven-parent-pom</url>
 
     <organization>
         <name>DV Bern AG</name>
         <url>https://www.dvbern.ch/</url>
     </organization>
+
+    <developers>
+        <developer>
+            <name>Christoph Linder</name>
+            <email>christoph.linder@dvbern.ch</email>
+            <organization>DV Bern AG</organization>
+            <roles>
+                <role>Developer</role>
+                <role>Architect</role>
+            </roles>
+        </developer>
+    </developers>
 
     <licenses>
         <license>
