@@ -49,18 +49,6 @@
 
     <profiles>
         <profile>
-            <id>doclint-java8-disable</id>
-            <!--mit java8 disablen wir das java-doclint-->
-            <activation>
-                <jdk>[1.8,)</jdk>
-            </activation>
-            <properties>
-                <maven-javadoc-plugin.additionalparam>-Xdoclint:none</maven-javadoc-plugin.additionalparam>
-                <!-- Wird ggf. durch ein Profil üeberschrieben -->
-                <skip-code-validation>false</skip-code-validation>
-            </properties>
-        </profile>
-        <profile>
             <id>development-mode</id>
             <activation>
                 <property>
@@ -213,11 +201,9 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>${maven-javadoc-plugin.version}</version>
-                    <!-- Mit java 8 generiert dieses Plugin Standardmaessig Errors wenn nicht alle  Javadoc Parameter wei @return
-					und @param ueberall ausgefuellt sind. Wir schalten dies aus da wir auch legacy Projekte haben oder einen anderen
-					javadoc style bevorzugen-->
                     <configuration>
-                        <additionalparam>${maven-javadoc-plugin.additionalparam}</additionalparam>
+                        <!-- backwards compatibility -->
+                        <doclint>false</doclint>
                     </configuration>
                 </plugin>
 
@@ -621,17 +607,6 @@
                 <configuration>
                     <showSuccess>false</showSuccess>
                     <fork>true</fork>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${maven-javadoc-plugin.version}</version>
-                <!-- Mit java 8 generiert dieses Plugin Standardmaessig Errors wenn nicht alle Javadoc Parameter wie @return
-				und @param ueberall ausgefuellt sind. Wir schalten dies aus da wir auch legacy Projekte haben oder einen anderen
-				javadoc style bevorzugen-->
-                <configuration>
-                    <additionalparam>${maven-javadoc-plugin.additionalparam}</additionalparam>
                 </configuration>
             </plugin>
         </plugins>
