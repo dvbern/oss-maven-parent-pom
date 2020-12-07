@@ -19,41 +19,35 @@
 
     <groupId>ch.dvbern.oss.maven</groupId>
     <artifactId>parent</artifactId>
+    <version>3.0.0</version>
     <packaging>pom</packaging>
-    <name>Maven OSS Parent POM der DV Bern AG</name>
-    <version>2.0.0</version>
 
+    <name>Maven OSS Parent POM der DV Bern AG</name>
     <description>Maven Einstellung, die allgemeine Gueltigkeit fuer die Open-Source-Projekte der DV Bern AG haben</description>
+
     <organization>
         <name>DV Bern AG</name>
-        <url>http://www.dvbern.ch/</url>
+        <url>https://www.dvbern.ch/</url>
     </organization>
 
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
             <url>https://www.apache.org/licenses/LICENSE-2.0</url>
-            <distribution>repo</distribution>
         </license>
     </licenses>
+
+    <scm>
+        <url>https://github.com/dvbern/oss-maven-parent-pom.git</url>
+        <connection>scm:git:https://github.com/dvbern/oss-maven-parent-pom.git</connection>
+        <developerConnection>scm:git:https://github.com/dvbern/oss-maven-parent-pom.git</developerConnection>
+    </scm>
 
     <modules>
         <module>code-conventions</module>
     </modules>
 
     <profiles>
-        <profile>
-            <id>doclint-java8-disable</id>
-            <!--mit java8 disablen wir das java-doclint-->
-            <activation>
-                <jdk>[1.8,)</jdk>
-            </activation>
-            <properties>
-                <maven-javadoc-plugin.additionalparam>-Xdoclint:none</maven-javadoc-plugin.additionalparam>
-                <!-- Wird ggf. durch ein Profil üeberschrieben -->
-                <skip-code-validation>false</skip-code-validation>
-            </properties>
-        </profile>
         <profile>
             <id>development-mode</id>
             <activation>
@@ -66,6 +60,67 @@
                 <skipTests>true</skipTests>
                 <skip-code-validation>true</skip-code-validation>
             </properties>
+        </profile>
+        <profile>
+            <id>maven-central</id>
+            <properties>
+                <maven.repo.snapshots.oss.id>ossrh</maven.repo.snapshots.oss.id>
+                <maven.repo.snapshots.oss.url>https://oss.sonatype.org/content/repositories/snapshots</maven.repo.snapshots.oss.url>
+                <maven.repo.releases.oss.id>ossrh</maven.repo.releases.oss.id>
+                <maven.repo.releases.oss.url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</maven.repo.releases.oss.url>
+            </properties>
+            <build>
+                <plugins>
+                    <!-- maven-javadoc-plugin -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven-javadoc-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- maven-gpg-plugin -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven-gpg-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- nexus-staging-maven-plugin -->
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>${nexus-staging-maven-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>deploy</id>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 
@@ -94,11 +149,7 @@
         <pluginManagement>
             <plugins>
 
-                <!--
-						maven-jar-plugin
-
-						Defines custom manifest entries when building JARs
-				-->
+                <!-- maven-jar-plugin: Defines custom manifest entries when building JARs -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
@@ -121,10 +172,7 @@
                     </configuration>
                 </plugin>
 
-                <!--
-						maven-ejb-plugin Defines custom manifest entries when building
-						EJB-JARs
-				-->
+                <!-- maven-ejb-plugin: Defines custom manifest entries when building EJB-JARs -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-ejb-plugin</artifactId>
@@ -143,9 +191,7 @@
                     </configuration>
                 </plugin>
 
-                <!--
-						maven-ear-plugin Defines custom manifest entries when building EARs
-				-->
+                <!-- maven-ear-plugin: Defines custom manifest entries when building EARs -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-ear-plugin</artifactId>
@@ -164,9 +210,7 @@
                     </configuration>
                 </plugin>
 
-                <!--
-						maven-failsafe-plugin
-				-->
+                <!-- maven-failsafe-plugin: -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
@@ -187,30 +231,21 @@
                     </executions>
                 </plugin>
 
-                <!--
-						maven-resources-plugin
-				 -->
+                <!-- maven-resources-plugin: -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>${maven-resources-plugin.version}</version>
                 </plugin>
 
-                <!--
-						maven-surefire-plugin
-
-						Defined fork mode
-				-->
+                <!-- maven-surefire-plugin: Defined fork mode -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven-surefire-plugin.version}</version>
                 </plugin>
 
-                <!--
-						maven-compiler-plugin Defines source, target-version and debug
-						information
-				-->
+                <!-- maven-compiler-plugin: Defines source, target-version and debug information -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -222,21 +257,18 @@
                     </configuration>
                 </plugin>
 
+                <!-- maven-javadoc-plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>${maven-javadoc-plugin.version}</version>
-                    <!-- Mit java 8 generiert dieses Plugin Standardmaessig Errors wenn nicht alle  Javadoc Parameter wei @return
-					und @param ueberall ausgefuellt sind. Wir schalten dies aus da wir auch legacy Projekte haben oder einen anderen
-					javadoc style bevorzugen-->
                     <configuration>
-                        <additionalparam>${maven-javadoc-plugin.additionalparam}</additionalparam>
+                        <!-- backwards compatibility -->
+                        <doclint>false</doclint>
                     </configuration>
                 </plugin>
 
-                <!--
-						maven-site-plugin Defines locale of site generation
-				-->
+                <!-- maven-site-plugin: Defines locale of site generation -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
@@ -259,18 +291,14 @@
                     </dependencies>
                 </plugin>
 
-                <!--
-						maven-dependency-plugin
-				-->
+                <!-- maven-dependency-plugin: -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
                     <version>${maven-dependency-plugin.version}</version>
                 </plugin>
 
-                <!--
-						maven-deploy-plugin
-				-->
+                <!-- maven-deploy-plugin: -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-deploy-plugin</artifactId>
@@ -283,27 +311,21 @@
                     </configuration>
                 </plugin>
 
-                <!--
-						maven-clean-plugin
-				-->
+                <!-- maven-clean-plugin: -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>${maven-clean-plugin.version}</version>
                 </plugin>
 
-                <!--
-						maven-install-plugin
-				-->
+                <!-- maven-install-plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-install-plugin</artifactId>
                     <version>${maven-install-plugin.version}</version>
                 </plugin>
 
-                <!--
-						maven-license-plugin
-				-->
+                <!-- maven-license-plugin -->
                 <plugin>
                     <groupId>com.mycila.maven-license-plugin</groupId>
                     <artifactId>maven-license-plugin</artifactId>
@@ -316,18 +338,14 @@
                     </configuration>
                 </plugin>
 
-                <!--
-						maven-project-info-reports-plugin
-				-->
+                <!-- maven-project-info-reports-plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
                     <version>${maven-project-info-reports-plugin.version}</version>
                 </plugin>
 
-                <!--
-						maven-pmd-plugin
-				-->
+                <!-- maven-pmd-plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-pmd-plugin</artifactId>
@@ -357,9 +375,7 @@
                     </configuration>
                 </plugin>
 
-                <!--
-														findbugs-maven-plugin (for backwards compatibility)
-				-->
+                <!-- findbugs-maven-plugin (for backwards compatibility) -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>findbugs-maven-plugin</artifactId>
@@ -400,9 +416,7 @@
                     </configuration>
                 </plugin>
 
-                <!--
-                                                        spotbugs-maven-plugin
-                -->
+                <!-- spotbugs-maven-plugin -->
                 <plugin>
                     <groupId>com.github.spotbugs</groupId>
                     <artifactId>spotbugs-maven-plugin</artifactId>
@@ -443,9 +457,7 @@
                     </configuration>
                 </plugin>
 
-                <!--
-						maven-checkstyle-plugin
-				-->
+                <!-- maven-checkstyle-plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
@@ -485,9 +497,7 @@
                     </dependencies>
                 </plugin>
 
-                <!--
-						maven-war-plugin Defines custom manifest entries when building WARs
-				-->
+                <!-- maven-war-plugin: Defines custom manifest entries when building WARs -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
@@ -506,13 +516,76 @@
                     </configuration>
                 </plugin>
 
+                <plugin>
+                    <groupId>ch.dvbern.oss.maven.jgitflow</groupId>
+                    <artifactId>jgitflow-maven-plugin</artifactId>
+                    <version>${jgitflow-maven-plugin.version}</version>
+                    <configuration>
+                        <!-- immer auf den aktuellen Branches bauen -->
+                        <pullDevelop>true</pullDevelop>
+                        <pullMaster>true</pullMaster>
+
+                        <!-- Multi-Modul-Projekte: Versionsnummern in alle Module uebernehmen -->
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
+
+                        <!-- Snapshots sind bei den *-start goals noch erlaubt (z.B. fuer Submodule!),
+                        bei den *-finish nicht mehr, siehe unten -->
+                        <allowSnapshots>true</allowSnapshots>
+                        <allowUntracked>true</allowUntracked>
+
+                        <!-- Build/Deploy wird von CI Server gemacht, nach dem finish werden alle notwendigen Branches/Tags gepusht -->
+                        <noReleaseBuild>true</noReleaseBuild>
+                        <noHotfixBuild>true</noHotfixBuild>
+                        <noFeatureBuild>true</noFeatureBuild>
+                        <pushReleases>true</pushReleases>
+                        <pushHotfixes>true</pushHotfixes>
+                        <pushFeatures>true</pushFeatures>
+
+                        <!-- Diese goals werden bei release-finish ausgefuehrt. (z.B. Enforcer haengt per Default an verify) -->
+                        <goals>clean verify</goals>
+
+                        <!-- Fast Forward merges verhindern, gibt schoenere Merge-Trees -->
+                        <suppressFastForward>true</suppressFastForward>
+                        <!-- Force lf line-endings in pom.xml -->
+                        <eol>lf</eol>
+                        <!-- Nutzt das SSH-Keystore-Passwort vom OS -->
+                        <enableSshAgent>true</enableSshAgent>
+
+                        <flowInitContext>
+                            <masterBranchName>master</masterBranchName>
+                            <developBranchName>develop</developBranchName>
+                            <featureBranchPrefix>feature/</featureBranchPrefix>
+                            <releaseBranchPrefix>release/</releaseBranchPrefix>
+                            <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
+                            <versionTagPrefix />
+                        </flowInitContext>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <!-- Use secure crypto algorithms: https://ecosystem.atlassian.net/browse/MJF-299 -->
+                            <groupId>com.jcraft</groupId>
+                            <artifactId>jsch</artifactId>
+                            <version>0.1.55</version>
+                        </dependency>
+                    </dependencies>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>release-finish</goal>
+                                <goal>hotfix-finish</goal>
+                            </goals>
+                            <configuration>
+                                <allowSnapshots>false</allowSnapshots>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
             </plugins>
         </pluginManagement>
 
         <plugins>
-            <!--
-				   maven-source-plugin Always create a source.jar where applicable
-			-->
+            <!-- maven-source-plugin: Always create a source.jar where applicable -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -528,10 +601,7 @@
                 </executions>
             </plugin>
 
-            <!--
-				   maven-enforcer-plugin Enforces use of Non-Snapshot-Plugins,
-				   proper dependency management and require maven version.
-			-->
+            <!-- maven-enforcer-plugin: Enforces use of Non-Snapshot-Plugins, proper dependency management and require maven version. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -568,73 +638,9 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>ch.dvbern.oss.maven.jgitflow</groupId>
-                <artifactId>jgitflow-maven-plugin</artifactId>
-                <version>${jgitflow-maven-plugin.version}</version>
-                <configuration>
-                    <!-- immer auf den aktuellen Branches bauen -->
-                    <pullDevelop>true</pullDevelop>
-                    <pullMaster>true</pullMaster>
-
-                    <!-- Multi-Modul-Projekte: Versionsnummern in alle Module uebernehmen -->
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
-
-                    <!-- Snapshots sind bei den *-start goals noch erlaubt (z.B. fuer Submodule!),
-					bei den *-finish nicht mehr, siehe unten -->
-                    <allowSnapshots>true</allowSnapshots>
-                    <allowUntracked>true</allowUntracked>
-
-                    <!-- Build/Deploy wird von CI Server gemacht, nach dem finish werden alle notwendigen Branches/Tags gepusht -->
-                    <noReleaseBuild>true</noReleaseBuild>
-                    <noHotfixBuild>true</noHotfixBuild>
-                    <noFeatureBuild>true</noFeatureBuild>
-                    <pushReleases>true</pushReleases>
-                    <pushHotfixes>true</pushHotfixes>
-                    <pushFeatures>true</pushFeatures>
-
-                    <!-- Diese goals werden bei release-finish ausgefuehrt. (z.B. Enforcer haengt per Default an verify) -->
-                    <goals>clean verify</goals>
-
-                    <!-- Fast Forward merges verhindern, gibt schoenere Merge-Trees -->
-                    <suppressFastForward>true</suppressFastForward>
-                    <!-- Force lf line-endings in pom.xml -->
-                    <eol>lf</eol>
-                    <!-- Nutzt das SSH-Keystore-Passwort vom OS -->
-                    <enableSshAgent>true</enableSshAgent>
-
-                    <flowInitContext>
-                        <masterBranchName>master</masterBranchName>
-                        <developBranchName>develop</developBranchName>
-                        <featureBranchPrefix>feature/</featureBranchPrefix>
-                        <releaseBranchPrefix>release/</releaseBranchPrefix>
-                        <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
-                        <versionTagPrefix />
-                    </flowInitContext>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <!-- Use secure crypto algorithms: https://ecosystem.atlassian.net/browse/MJF-299 -->
-                        <groupId>com.jcraft</groupId>
-                        <artifactId>jsch</artifactId>
-                        <version>0.1.55</version>
-                    </dependency>
-                </dependencies>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>release-finish</goal>
-                            <goal>hotfix-finish</goal>
-                        </goals>
-                        <configuration>
-                            <allowSnapshots>false</allowSnapshots>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
-
     </build>
+
     <reporting>
         <plugins>
             <plugin>
@@ -664,50 +670,36 @@
                     <fork>true</fork>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${maven-javadoc-plugin.version}</version>
-                <!-- Mit java 8 generiert dieses Plugin Standardmaessig Errors wenn nicht alle Javadoc Parameter wie @return
-				und @param ueberall ausgefuellt sind. Wir schalten dies aus da wir auch legacy Projekte haben oder einen anderen
-				javadoc style bevorzugen-->
-                <configuration>
-                    <additionalparam>${maven-javadoc-plugin.additionalparam}</additionalparam>
-                </configuration>
-            </plugin>
         </plugins>
     </reporting>
 
     <distributionManagement>
         <repository>
-            <id>dvb.oss</id>
+            <id>${maven.repo.releases.oss.id}</id>
             <name>DV Bern Release Repository</name>
             <url>${maven.repo.releases.oss.url}</url>
         </repository>
         <snapshotRepository>
-            <id>dvb.oss.snapshots</id>
+            <id>${maven.repo.snapshots.oss.id}</id>
             <name>DV Bern Snapshots Repository</name>
             <layout>default</layout>
             <url>${maven.repo.snapshots.oss.url}</url>
             <uniqueVersion>true</uniqueVersion>
         </snapshotRepository>
         <site>
-            <id>dvb.oss.sites</id>
+            <id>${maven.repo.sites.oss.id}</id>
             <name>DV Bern Projektseiten</name>
             <url>${maven.repo.sites.oss.url}</url>
         </site>
     </distributionManagement>
 
-    <!--
-		 The properties section is the place where this parent pom may be
-		 customized.
-	 -->
+    <!-- The properties section is the place where this parent pom may be customized. -->
     <properties>
         <!--
         Diese Version muss der ${project.version} entsprechen. Leider kann sie nicht per Variable
         ${project.version} gesetzt werden, weil dann erbende Projekte die ${project.version} überschreiben.
          -->
-        <code-conventions.version>2.0.0</code-conventions.version>
+        <code-conventions.version>3.0.0</code-conventions.version>
 
         <!-- backwards compatibility to old maven-timestamp-plugin -->
         <timestamp>${maven.build.timestamp}</timestamp>
@@ -717,10 +709,13 @@
 			  Global settings
 			  ===========================================================================================
 		-->
-        <!-- URLs-->
+        <!-- Repo IDs/URLs-->
+        <maven.repo.releases.oss.id>dvb.oss</maven.repo.releases.oss.id>
         <maven.repo.releases.oss.url>releases-url-set-by-CI</maven.repo.releases.oss.url>
+        <maven.repo.snapshots.oss.id>dvb.oss.snapshots</maven.repo.snapshots.oss.id>
         <maven.repo.snapshots.oss.url>snapshots-url-set-by-CI</maven.repo.snapshots.oss.url>
-        <maven.site.oss.url>site-url-set-by-CI</maven.site.oss.url>
+        <maven.repo.sites.oss.id>dvb.oss.sites</maven.repo.sites.oss.id>
+        <maven.repo.sites.oss.url>site-url-set-by-CI</maven.repo.sites.oss.url>
 
         <!--
 			  Encoding settings Defines the encoding used on java source files and
@@ -743,33 +738,23 @@
 			  ===========================================================================================
 		-->
 
-        <!--
-			  maven-checkstyle-plugin
-		-->
+        <!-- maven-checkstyle-plugin -->
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
         <maven-checkstyle.version>8.16</maven-checkstyle.version>
 
-        <!--
-			  maven-clean-plugin
-		-->
+        <!-- maven-clean-plugin -->
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
 
-        <!--
-			  maven-compiler-plugin
-		-->
+        <!-- maven-compiler-plugin -->
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
         <maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
         <maven-compiler-plugin.debug>true</maven-compiler-plugin.debug>
 
-        <!--
-			  maven-dependency-plugin
-		-->
+        <!-- maven-dependency-plugin -->
         <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
 
-        <!--
-			  maven-deploy-plugin
-		-->
+        <!-- maven-deploy-plugin -->
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
         <maven-deploy-plugin.deployAtEnd>true</maven-deploy-plugin.deployAtEnd>
         <maven-deploy-plugin.skip>false</maven-deploy-plugin.skip>
@@ -777,34 +762,21 @@
         <maven-deploy-plugin.altReleaseDeploymentRepository />
         <maven-deploy-plugin.altSnapshotDeploymentRepository />
 
-        <!--
-			  maven-ear-plugin
-		-->
+        <!-- maven-ear-plugin -->
         <maven-ear-plugin.version>3.0.1</maven-ear-plugin.version>
 
-        <!--
-			  maven-ejb-plugin
-		-->
+        <!-- maven-ejb-plugin -->
         <maven-ejb-plugin.version>3.0.1</maven-ejb-plugin.version>
 
-        <!--
-			  maven-enforcer-plugin
-		-->
+        <!-- maven-enforcer-plugin -->
         <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
         <!-- If set to true, enforcing rules are skipped. -->
         <maven-enforcer-plugin.skip>false</maven-enforcer-plugin.skip>
-        <!--
-			  If set to false, even SNAPSHOT version may not define SNAPSHOT
-			  dependencies.
-		-->
+        <!-- If set to false, even SNAPSHOT version may not define SNAPSHOT dependencies. -->
         <maven-enforcer-plugin.requireReleaseDeps.onlyWhenRelease>true</maven-enforcer-plugin.requireReleaseDeps.onlyWhenRelease>
-        <!--
-			  if the parent should be checked. Default: true
-		-->
+        <!-- if the parent should be checked. Default: true -->
         <maven-enforcer-plugin.requireReleaseDeps.failWhenParentIsSnapshot>true</maven-enforcer-plugin.requireReleaseDeps.failWhenParentIsSnapshot>
-        <!--
-			  if transitive dependencies should be checked. Default: true
-		-->
+        <!-- if transitive dependencies should be checked. Default: true -->
         <maven-enforcer-plugin.requireReleaseDeps.searchTransitive>true</maven-enforcer-plugin.requireReleaseDeps.searchTransitive>
         <!--
 			  The comma separated list of phases that should be used to find
@@ -844,101 +816,71 @@
         <!-- Supported maven version -->
         <maven-enforcer-plugin.requireMavenVersion.version>[3.0.0,)</maven-enforcer-plugin.requireMavenVersion.version>
 
-        <!--
-			  maven-failsafe-plugin
-		-->
+        <!-- maven-failsafe-plugin -->
         <maven-failsafe-plugin.version>2.22.1</maven-failsafe-plugin.version>
 
-        <!--
-			  findbugs-maven-plugin
-		-->
+        <!-- findbugs-maven-plugin -->
         <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
 
- 		<!--
-              spotbugs-maven-plugin
-        -->
+ 		<!-- spotbugs-maven-plugin -->
         <spotbugs-maven-plugin.version>3.1.10</spotbugs-maven-plugin.version>
 
-        <!--
-			  maven-install-plugin
-		-->
+        <!-- maven-install-plugin -->
         <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
 
-        <!--
-			  maven-jar-plugin
-		-->
+        <!-- maven-jar-plugin -->
         <maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
 
-        <!--
-			  maven-jxr-plugin
-		-->
+        <!-- maven-jxr-plugin -->
         <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
 
-        <!--
-			  maven-javadoc-plugin
-		-->
+        <!-- maven-javadoc-plugin -->
         <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
         <!-- wird vom Java8-Profil ueberschrieben -->
         <maven-javadoc-plugin.additionalparam />
 
-        <!--
-			  maven-license-plugin
-		-->
+        <!-- maven-license-plugin -->
         <maven-license-plugin.version>1.9.0</maven-license-plugin.version>
         <maven-license-plugin.header>${basedir}/src/etc/header.txt</maven-license-plugin.header>
 
-        <!--
-			  maven-pmd-plugin
-		-->
+        <!-- maven-pmd-plugin -->
         <maven-pmd-plugin.version>3.11.0</maven-pmd-plugin.version>
 
-        <!--
-			  maven-project-info-reports-plugin
-		-->
+        <!-- maven-project-info-reports-plugin -->
         <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
 
-        <!--
-			  maven-resources-plugin
-		-->
+        <!-- maven-resources-plugin -->
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
 
-        <!--
-			  maven-site-plugin
-		-->
+        <!-- maven-site-plugin -->
         <maven-site-plugin.version>3.7.1</maven-site-plugin.version>
         <maven-site-plugin.locales>de_CH</maven-site-plugin.locales>
         <maven-site-plugin.skip>false</maven-site-plugin.skip>
         <maven-site-plugin.skipDeploy>false</maven-site-plugin.skipDeploy>
 
-        <!--
-			  maven-source-plugin
-		-->
+        <!-- maven-source-plugin -->
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
 
-        <!--
-			  maven-surefire-plugin
-		-->
+        <!-- maven-surefire-plugin -->
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
 
-        <!--
-			  maven-surefire-report-plugin
-		-->
+        <!-- maven-surefire-report-plugin -->
         <maven-surefire-report-plugin.version>2.22.1</maven-surefire-report-plugin.version>
 
-        <!--
-			  maven-war-plugin
-		-->
+        <!-- maven-war-plugin -->
         <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
 
-        <!--
-			  taglist-maven-plugin
-		-->
+        <!-- taglist-maven-plugin -->
         <taglist-maven-plugin.version>2.4</taglist-maven-plugin.version>
 
-        <!--
-			jgitflow-maven-plugin
-		-->
+        <!-- jgitflow-maven-plugin -->
         <jgitflow-maven-plugin.version>1.0-m6</jgitflow-maven-plugin.version>
+
+        <!-- nexus-staging-maven-plugin -->
+        <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
+
+        <!-- maven-gpg-plugin -->
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
     </properties>
 
 </project>
