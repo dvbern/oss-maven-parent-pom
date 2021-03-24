@@ -19,7 +19,7 @@
 
     <groupId>ch.dvbern.oss.maven</groupId>
     <artifactId>parent</artifactId>
-    <version>3.0.3</version>
+    <version>3.0.4</version>
     <packaging>pom</packaging>
 
     <name>Maven OSS Parent POM der DV Bern AG</name>
@@ -66,10 +66,14 @@
             <properties>
                 <skipTests>true</skipTests>
                 <skip-code-validation>true</skip-code-validation>
+                <skip-javadoc>true</skip-javadoc>
             </properties>
         </profile>
         <profile>
             <id>maven-central</id>
+            <properties>
+                <skip-javadoc />
+            </properties>
             <build>
                 <plugins>
 
@@ -585,7 +589,7 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>${maven-javadoc-plugin.version}</version>
                 <configuration>
-                    <skip>${skip-code-validation}</skip>
+                    <skip>${skip-javadoc}</skip>
                 </configuration>
                 <executions>
                     <execution>
@@ -692,11 +696,15 @@
 
     <!-- The properties section is the place where this parent pom may be customized. -->
     <properties>
+        <skipTests />
+        <skip-code-validation />
+        <skip-javadoc />
+
         <!--
         Diese Version muss der ${project.version} entsprechen. Leider kann sie nicht per Variable
         ${project.version} gesetzt werden, weil dann erbende Projekte die ${project.version} überschreiben.
          -->
-        <code-conventions.version>3.0.3</code-conventions.version>
+        <code-conventions.version>3.0.4</code-conventions.version>
 
         <!-- backwards compatibility to old maven-timestamp-plugin -->
         <timestamp>${maven.build.timestamp}</timestamp>
