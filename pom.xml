@@ -19,7 +19,7 @@
 
     <groupId>ch.dvbern.oss.maven</groupId>
     <artifactId>parent</artifactId>
-    <version>3.0.4-SNAPSHOT</version>
+    <version>3.0.5-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Maven OSS Parent POM der DV Bern AG</name>
@@ -72,7 +72,7 @@
         <profile>
             <id>maven-central</id>
             <properties>
-                <skip-javadoc/>
+                <skip-javadoc />
             </properties>
             <build>
                 <plugins>
@@ -696,9 +696,9 @@
 
     <!-- The properties section is the place where this parent pom may be customized. -->
     <properties>
-        <skipTests/>
-        <skip-code-validation/>
-        <skip-javadoc/>
+        <skipTests />
+        <skip-code-validation />
+        <skip-javadoc />
 
         <!--
         Diese Version muss der ${project.version} entsprechen. Leider kann sie nicht per Variable
