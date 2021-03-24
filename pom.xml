@@ -19,7 +19,7 @@
 
     <groupId>ch.dvbern.oss.maven</groupId>
     <artifactId>parent</artifactId>
-    <version>3.0.4</version>
+    <version>3.0.5</version>
     <packaging>pom</packaging>
 
     <name>Maven OSS Parent POM der DV Bern AG</name>
@@ -305,19 +305,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-install-plugin</artifactId>
                     <version>${maven-install-plugin.version}</version>
-                </plugin>
-
-                <!-- maven-license-plugin -->
-                <plugin>
-                    <groupId>com.mycila.maven-license-plugin</groupId>
-                    <artifactId>maven-license-plugin</artifactId>
-                    <version>${maven-license-plugin.version}</version>
-                    <configuration>
-                        <header>${maven-license-plugin.header}</header>
-                        <includes>
-                            <include>src/**/*.java</include>
-                        </includes>
-                    </configuration>
                 </plugin>
 
                 <!-- maven-project-info-reports-plugin -->
@@ -704,7 +691,7 @@
         Diese Version muss der ${project.version} entsprechen. Leider kann sie nicht per Variable
         ${project.version} gesetzt werden, weil dann erbende Projekte die ${project.version} überschreiben.
          -->
-        <code-conventions.version>3.0.4</code-conventions.version>
+        <code-conventions.version>3.0.5</code-conventions.version>
 
         <!-- backwards compatibility to old maven-timestamp-plugin -->
         <timestamp>${maven.build.timestamp}</timestamp>
@@ -828,7 +815,7 @@
         <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
 
  		<!-- spotbugs-maven-plugin -->
-        <spotbugs-maven-plugin.version>4.2.0</spotbugs-maven-plugin.version>
+        <spotbugs-maven-plugin.version>4.2.2</spotbugs-maven-plugin.version>
 
         <!-- maven-install-plugin -->
         <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
@@ -843,10 +830,6 @@
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
         <!-- wird vom Java8-Profil ueberschrieben -->
         <maven-javadoc-plugin.additionalparam />
-
-        <!-- maven-license-plugin -->
-        <maven-license-plugin.version>1.9.0</maven-license-plugin.version>
-        <maven-license-plugin.header>${basedir}/src/etc/header.txt</maven-license-plugin.header>
 
         <!-- maven-pmd-plugin -->
         <maven-pmd-plugin.version>3.14.0</maven-pmd-plugin.version>
@@ -879,10 +862,10 @@
         <taglist-maven-plugin.version>2.4</taglist-maven-plugin.version>
 
         <!-- jgitflow-maven-plugin -->
-        <jgitflow-maven-plugin.version>1.0-m7</jgitflow-maven-plugin.version>
+        <jgitflow-maven-plugin.version>1.0-m8</jgitflow-maven-plugin.version>
 
         <!-- nexus-staging-maven-plugin -->
-        <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
+        <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
 
         <!-- maven-gpg-plugin -->
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
