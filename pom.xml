@@ -19,7 +19,7 @@
 
     <groupId>ch.dvbern.oss.maven</groupId>
     <artifactId>parent</artifactId>
-    <version>3.0.2</version>
+    <version>3.0.3</version>
     <packaging>pom</packaging>
 
     <name>Maven OSS Parent POM der DV Bern AG</name>
@@ -63,12 +63,6 @@
     <profiles>
         <profile>
             <id>development-mode</id>
-            <activation>
-                <property>
-                    <name>skipTests</name>
-                    <value>true</value>
-                </property>
-            </activation>
             <properties>
                 <skipTests>true</skipTests>
                 <skip-code-validation>true</skip-code-validation>
@@ -78,21 +72,6 @@
             <id>maven-central</id>
             <build>
                 <plugins>
-                    <!-- maven-javadoc-plugin -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>${maven-javadoc-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                            <!-- configuration: see jenkins settings.xml -->
-                        </executions>
-                    </plugin>
 
                     <!-- maven-gpg-plugin -->
                     <plugin>
@@ -107,7 +86,7 @@
                                     <goal>sign</goal>
                                 </goals>
                             </execution>
-                            <!-- configuration: see jenkins settings.xml -->
+                            <!-- configuration: see jenkins ~/.gnupg & ~/.m2/settings.xml -->
                         </executions>
                     </plugin>
 
@@ -127,7 +106,7 @@
                                 <id>deploy</id>
                             </execution>
                         </executions>
-                        <!-- configuration: see jenkins settings.xml -->
+                        <!-- configuration: see jenkins ~/.m2/settings.xml -->
                     </plugin>
                 </plugins>
             </build>
@@ -264,17 +243,6 @@
                         <source>${maven-compiler-plugin.source}</source>
                         <target>${maven-compiler-plugin.target}</target>
                         <debug>${maven-compiler-plugin.debug}</debug>
-                    </configuration>
-                </plugin>
-
-                <!-- maven-javadoc-plugin -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>${maven-javadoc-plugin.version}</version>
-                    <configuration>
-                        <!-- backwards compatibility -->
-                        <doclint>false</doclint>
                     </configuration>
                 </plugin>
 
@@ -611,6 +579,25 @@
                 </executions>
             </plugin>
 
+            <!-- maven-javadoc-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <configuration>
+                    <skip>${skip-code-validation}</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                    <!-- configuration: see jenkins settings.xml -->
+                </executions>
+            </plugin>
+
             <!-- maven-enforcer-plugin: Enforces use of Non-Snapshot-Plugins, proper dependency management and require maven version. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -709,7 +696,7 @@
         Diese Version muss der ${project.version} entsprechen. Leider kann sie nicht per Variable
         ${project.version} gesetzt werden, weil dann erbende Projekte die ${project.version} überschreiben.
          -->
-        <code-conventions.version>3.0.2</code-conventions.version>
+        <code-conventions.version>3.0.3</code-conventions.version>
 
         <!-- backwards compatibility to old maven-timestamp-plugin -->
         <timestamp>${maven.build.timestamp}</timestamp>
