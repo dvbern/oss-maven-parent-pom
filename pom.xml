@@ -821,7 +821,7 @@
         <maven-enforcer-plugin.evaluateBeanshell.condition>true</maven-enforcer-plugin.evaluateBeanshell.condition>
 
         <!-- Supported maven version -->
-        <maven-enforcer-plugin.requireMavenVersion.version>[3.0.0,)</maven-enforcer-plugin.requireMavenVersion.version>
+        <maven-enforcer-plugin.requireMavenVersion.version>[3.8.7,)</maven-enforcer-plugin.requireMavenVersion.version>
 
         <!-- maven-failsafe-plugin -->
         <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
