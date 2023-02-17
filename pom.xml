@@ -526,7 +526,7 @@
                             <featureBranchPrefix>feature/</featureBranchPrefix>
                             <releaseBranchPrefix>release/</releaseBranchPrefix>
                             <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
-                            <versionTagPrefix />
+                            <versionTagPrefix/>
                         </flowInitContext>
                     </configuration>
                     <dependencies>
@@ -550,6 +550,49 @@
                     </executions>
                 </plugin>
 
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                    <configuration>
+                        <skip>${skip-javadoc}</skip>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${maven-enforcer-plugin.version}</version>
+                    <configuration>
+                        <skip>${maven-enforcer-plugin.skip}</skip>
+                        <rules>
+                            <requirePluginVersions>
+                                <unCheckedPlugins>${maven-enforcer-plugin.requirePluginVersions.unCheckedPlugins}</unCheckedPlugins>
+                                <additionalPlugins>${maven-enforcer-plugin.requirePluginVersions.additionalPlugins}</additionalPlugins>
+                                <phases>${maven-enforcer-plugin.requireReleaseDeps.phases}</phases>
+                            </requirePluginVersions>
+                            <requireReleaseDeps>
+                                <failWhenParentIsSnapshot>${maven-enforcer-plugin.requireReleaseDeps.failWhenParentIsSnapshot}</failWhenParentIsSnapshot>
+                                <onlyWhenRelease>${maven-enforcer-plugin.requireReleaseDeps.onlyWhenRelease}</onlyWhenRelease>
+                                <searchTransitive>${maven-enforcer-plugin.requireReleaseDeps.searchTransitive}</searchTransitive>
+                            </requireReleaseDeps>
+                            <evaluateBeanshell>
+                                <condition>${maven-enforcer-plugin.evaluateBeanshell.condition}</condition>
+                            </evaluateBeanshell>
+                            <requireMavenVersion>
+                                <version>${maven-enforcer-plugin.requireMavenVersion.version}</version>
+                            </requireMavenVersion>
+                        </rules>
+                        <fail>true</fail>
+                    </configuration>
+                </plugin>
+
             </plugins>
         </pluginManagement>
 
@@ -558,7 +601,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>${maven-source-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -574,10 +616,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${maven-javadoc-plugin.version}</version>
-                <configuration>
-                    <skip>${skip-javadoc}</skip>
-                </configuration>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -593,35 +631,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>${maven-enforcer-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>enforce</id>
                         <goals>
                             <goal>enforce</goal>
                         </goals>
-                        <configuration>
-                            <skip>${maven-enforcer-plugin.skip}</skip>
-                            <rules>
-                                <requirePluginVersions>
-                                    <unCheckedPlugins>${maven-enforcer-plugin.requirePluginVersions.unCheckedPlugins}</unCheckedPlugins>
-                                    <additionalPlugins>${maven-enforcer-plugin.requirePluginVersions.additionalPlugins}</additionalPlugins>
-                                    <phases>${maven-enforcer-plugin.requireReleaseDeps.phases}</phases>
-                                </requirePluginVersions>
-                                <requireReleaseDeps>
-                                    <failWhenParentIsSnapshot>${maven-enforcer-plugin.requireReleaseDeps.failWhenParentIsSnapshot}</failWhenParentIsSnapshot>
-                                    <onlyWhenRelease>${maven-enforcer-plugin.requireReleaseDeps.onlyWhenRelease}</onlyWhenRelease>
-                                    <searchTransitive>${maven-enforcer-plugin.requireReleaseDeps.searchTransitive}</searchTransitive>
-                                </requireReleaseDeps>
-                                <evaluateBeanshell>
-                                    <condition>${maven-enforcer-plugin.evaluateBeanshell.condition}</condition>
-                                </evaluateBeanshell>
-                                <requireMavenVersion>
-                                    <version>${maven-enforcer-plugin.requireMavenVersion.version}</version>
-                                </requireMavenVersion>
-                            </rules>
-                            <fail>true</fail>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
