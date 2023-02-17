@@ -23,9 +23,16 @@ SNAPSHOT_VERSION="$2"-SNAPSHOT
 
 git checkout develop
 
+./mvnw versions:set -DnewVersion=${SNAPSHOT_VERSION}
+./mvnw versions:set-property -Dproperty=code-conventions.version -DnewVersion=${SNAPSHOT_VERSION}
+./mvnw install
+./mvnw versions:set-property -Dproperty=code-conventions.version -DnewVersion=${RELEASE_VERSION}
+./mvnw versions:set -DnewVersion=${RELEASE_VERSION}
+./mvnw versions:commit
+
 # maven-enforcer-plugin check fails when updateDependencies is activated.
 # Thus we have to update the versions in such a complicated fashion.
-mvn -U jgitflow:release-start -DreleaseVersion=${RELEASE_VERSION} -DdevelopmentVersion=${SNAPSHOT_VERSION} -DupdateDependencies=false -DallowUntracked=true
+./mvnw -U jgitflow:release-start -DreleaseVersion=${RELEASE_VERSION} -DdevelopmentVersion=${SNAPSHOT_VERSION} -DupdateDependencies=false -DallowUntracked=true
 
 mvn versions:set-property -Dproperty=code-conventions.version -DnewVersion=${RELEASE_VERSION}
 mvn versions:set -DnewVersion=${RELEASE_VERSION}
