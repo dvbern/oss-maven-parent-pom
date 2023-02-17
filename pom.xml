@@ -581,6 +581,7 @@
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>${maven-javadoc-plugin.version}</version>
                     <configuration>
+                        <doclint>all,-missing</doclint>
                         <skip>${skip-javadoc}</skip>
                     </configuration>
                 </plugin>
@@ -862,8 +863,6 @@
 
         <!-- maven-javadoc-plugin -->
         <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
-        <!-- wird vom Java8-Profil ueberschrieben -->
-        <maven-javadoc-plugin.additionalparam/>
 
         <!-- maven-jxr-plugin -->
         <maven-jxr-plugin.version>3.3.0</maven-jxr-plugin.version>
