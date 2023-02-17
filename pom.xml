@@ -14,8 +14,10 @@
   ~ limitations under the License.
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
     <groupId>ch.dvbern.oss.maven</groupId>
     <artifactId>parent</artifactId>
@@ -72,7 +74,7 @@
         <profile>
             <id>maven-central</id>
             <properties>
-                <skip-javadoc />
+                <skip-javadoc/>
             </properties>
             <build>
                 <plugins>
@@ -716,17 +718,7 @@
 
     <!-- The properties section is the place where this parent pom may be customized. -->
     <properties>
-        <skipTests />
-        <skip-code-validation />
-        <skip-javadoc />
-
-        <!--
-        Diese Version muss der ${project.version} entsprechen. Leider kann sie nicht per Variable
-        ${project.version} gesetzt werden, weil dann erbende Projekte die ${project.version} überschreiben.
-         -->
-        <code-conventions.version>3.0.6-SNAPSHOT</code-conventions.version>
-
-        <!-- backwards compatibility to old maven-timestamp-plugin -->
+        <!-- backwards compatibility to the old maven-timestamp-plugin -->
         <timestamp>${maven.build.timestamp}</timestamp>
 
         <!--
@@ -762,6 +754,16 @@
 			  Plugin customization
 			  ===========================================================================================
 		-->
+        <skipTests/>
+        <skip-code-validation/>
+        <skip-javadoc/>
+
+        <!--
+        Diese Version muss der ${project.version} entsprechen. Leider kann sie nicht per Variable
+        ${project.version} gesetzt werden, weil dann erbende Projekte die ${project.version} überschreiben.
+         -->
+        <code-conventions.version>3.0.6-SNAPSHOT</code-conventions.version>
+
         <!-- spotbugs-maven-plugin -->
         <spotbugs-maven-plugin.version>4.7.3.0</spotbugs-maven-plugin.version>
 
@@ -785,9 +787,9 @@
         <maven-deploy-plugin.version>3.1.0</maven-deploy-plugin.version>
         <maven-deploy-plugin.deployAtEnd>true</maven-deploy-plugin.deployAtEnd>
         <maven-deploy-plugin.skip>false</maven-deploy-plugin.skip>
-        <maven-deploy-plugin.altDeploymentRepository />
-        <maven-deploy-plugin.altReleaseDeploymentRepository />
-        <maven-deploy-plugin.altSnapshotDeploymentRepository />
+        <maven-deploy-plugin.altDeploymentRepository/>
+        <maven-deploy-plugin.altReleaseDeploymentRepository/>
+        <maven-deploy-plugin.altSnapshotDeploymentRepository/>
 
         <!-- maven-ear-plugin -->
         <maven-ear-plugin.version>3.3.0</maven-ear-plugin.version>
@@ -816,14 +818,14 @@
 			no version, or snapshots, etc. The plugins should be specified in the
 			form: group:artifactId.
 		-->
-        <maven-enforcer-plugin.requirePluginVersions.unCheckedPlugins />
+        <maven-enforcer-plugin.requirePluginVersions.unCheckedPlugins/>
         <!--
 		  A list of additional plugins to enforce have versions. These are
 		  plugins that may not be in the poms but are used anyway, like help,
 		  eclipse etc. The plugins should be specified in the form:
 		  group:artifactId.
 		-->
-        <maven-enforcer-plugin.requirePluginVersions.additionalPlugins />
+        <maven-enforcer-plugin.requirePluginVersions.additionalPlugins/>
         <!--
 					  Beanshell (http://www.beanshell.org/) Script. Can be used to write ad-hoc enforcing rules. Example:
 
@@ -849,8 +851,6 @@
         <!-- maven-gpg-plugin -->
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
 
-
-
         <!-- maven-install-plugin -->
         <maven-install-plugin.version>3.1.0</maven-install-plugin.version>
 
@@ -863,7 +863,7 @@
         <!-- maven-javadoc-plugin -->
         <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
         <!-- wird vom Java8-Profil ueberschrieben -->
-        <maven-javadoc-plugin.additionalparam />
+        <maven-javadoc-plugin.additionalparam/>
 
         <!-- maven-jxr-plugin -->
         <maven-jxr-plugin.version>3.3.0</maven-jxr-plugin.version>
