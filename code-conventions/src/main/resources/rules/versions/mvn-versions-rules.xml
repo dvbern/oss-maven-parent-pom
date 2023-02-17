@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset xmlns="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 comparisonMethod="maven"
+		 xsi:schemaLocation="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0 https://www.mojohaus.org/versions-maven-plugin/xsd/rule-2.0.0.xsd">
+	<ignoreVersions>
+		<ignoreVersion type="regex">(?i).*[-_\.]CR[0-9\.]*</ignoreVersion>
+		<ignoreVersion type="regex">(?i).*[-_\.]rc[0-9\.]*</ignoreVersion>
+		<ignoreVersion type="regex">(?i).*[-_\.]pr[0-9\.]*</ignoreVersion>
+		<ignoreVersion type="regex">(?i).*[-_\.]SP[0-9\.]*</ignoreVersion>
+		<ignoreVersion type="regex">(?i).*[-_\.]PFD-[0-9\.]*</ignoreVersion>
+		<ignoreVersion type="regex">(?i).*[-_\.]MULE-[0-9\.]*</ignoreVersion>
+		<ignoreVersion type="regex">(?i).*[-_\.]Dev[0-9\.]*</ignoreVersion>
+		<ignoreVersion type="regex">(?i).*[-_\.]beta[0-9\.\-]*</ignoreVersion>
+		<ignoreVersion type="regex">(?i).*[-_\.]alpha[0-9\.\-]*</ignoreVersion>
+		<ignoreVersion type="regex">(?i).*[-_\.]nightly[0-9\.]*</ignoreVersion>
+		<ignoreVersion type="regex">(?i).*[-_\.]jboss[0-9\.\-]*</ignoreVersion>
+		<ignoreVersion type="regex">(?i).*-atlassian-.*</ignoreVersion>
+		<ignoreVersion type="regex">(?i).*-jenkins-[0-9\.]*</ignoreVersion>
+		<ignoreVersion type="regex">(?i).*[-_\.]redhat-[0-9]+</ignoreVersion>
+	</ignoreVersions>
+	<rules>
+		<rule groupId="antlr" artifactId="antlr" comparisonMethod="maven">
+			<ignoreVersions>
+				<ignoreVersion>20030911</ignoreVersion>
+			</ignoreVersions>
+		</rule>
+		<rule groupId="commons-beanutils" artifactId="commons-beanutils" comparisonMethod="maven">
+			<ignoreVersions>
+				<ignoreVersion type="regex">200.+</ignoreVersion>
+			</ignoreVersions>
+		</rule>
+		<rule groupId="commons-codec" artifactId="commons-codec" comparisonMethod="maven">
+			<ignoreVersions>
+				<ignoreVersion type="regex">200.+</ignoreVersion>
+			</ignoreVersions>
+		</rule>
+		<rule groupId="commons-io" artifactId="commons-io" comparisonMethod="maven">
+			<ignoreVersions>
+				<ignoreVersion>20030203.000550</ignoreVersion>
+			</ignoreVersions>
+		</rule>
+		<rule groupId="commons-logging" artifactId="commons-logging" comparisonMethod="maven">
+			<ignoreVersions>
+				<ignoreVersion>99.0-does-not-exist</ignoreVersion>
+			</ignoreVersions>
+		</rule>
+	</rules>
+</ruleset>

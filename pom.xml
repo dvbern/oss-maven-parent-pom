@@ -142,6 +142,25 @@
         <pluginManagement>
             <plugins>
 
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>${versions-maven-plugin.version}</version>
+                    <inherited>false</inherited>
+                    <dependencies>
+                        <dependency>
+                            <groupId>ch.dvbern.oss.maven</groupId>
+                            <artifactId>code-conventions</artifactId>
+                            <version>${code-conventions.version}</version>
+                        </dependency>
+                    </dependencies>
+                    <configuration>
+                        <!-- run with: mvn versions:display-dependency-updates-->
+                        <outputFile>${project.build.directory}/outdated-dependencies.txt</outputFile>
+                        <rulesUri>classpath:///rules/versions/mvn-versions-rules.xml</rulesUri>
+                    </configuration>
+                </plugin>
+
                 <!-- maven-jar-plugin: Defines custom manifest entries when building JARs -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -834,6 +853,9 @@
 
         <!-- maven-install-plugin -->
         <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
+
+        <!-- maven-versions-plugin -->
+        <versions-maven-plugin.version>2.14.2</versions-maven-plugin.version>
 
         <!-- maven-jar-plugin -->
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
