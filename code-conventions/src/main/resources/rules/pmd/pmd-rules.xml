@@ -2,7 +2,7 @@
 <ruleset name="DVBern Default Ruleset"
 		 xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+		 xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
 	<description>
 		DVBern Default Ruleset mit kleineren Modifikationen
 	</description>
@@ -29,9 +29,6 @@
 		<priority>3</priority>
 	</rule>
 	<rule ref="category/java/bestpractices.xml/UnusedFormalParameter">
-		<priority>3</priority>
-	</rule>
-	<rule ref="category/java/errorprone.xml/EmptySwitchStatements">
 		<priority>3</priority>
 	</rule>
 	<rule ref="category/java/errorprone.xml/ClassCastExceptionWithToArray">
@@ -73,9 +70,6 @@
 	<rule ref="category/java/errorprone.xml/UnnecessaryCaseChange">
 		<priority>4</priority>
 	</rule>
-	<rule ref="category/java/errorprone.xml/EmptySynchronizedBlock">
-		<priority>2</priority>
-	</rule>
 	<rule ref="category/java/design.xml/SingularField">
 		<priority>4</priority>
 	</rule>
@@ -86,9 +80,6 @@
 		<priority>3</priority>
 	</rule>
 	<rule ref="category/java/errorprone.xml/AvoidCatchingThrowable">
-		<priority>2</priority>
-	</rule>
-	<rule ref="category/java/errorprone.xml/EmptyWhileStmt">
 		<priority>2</priority>
 	</rule>
 	<rule ref="category/java/design.xml/CollapsibleIfStatements">
@@ -103,6 +94,9 @@
 	<rule ref="category/java/codestyle.xml/UnnecessaryModifier">
 		<priority>5</priority>
 	</rule>
+	<rule ref="category/java/codestyle.xml/EmptyControlStatement">
+		<priority>3</priority>
+	</rule>
 	<rule ref="category/java/bestpractices.xml/PreserveStackTrace">
 		<priority>3</priority>
 	</rule>
@@ -111,9 +105,6 @@
 	</rule>
 	<rule ref="category/java/design.xml/AvoidThrowingRawExceptionTypes">
 		<priority>3</priority>
-	</rule>
-	<rule ref="category/java/errorprone.xml/EmptyIfStmt">
-		<priority>2</priority>
 	</rule>
 	<rule ref="category/java/errorprone.xml/EqualsNull">
 		<priority>2</priority>
@@ -139,7 +130,7 @@
 	<rule ref="category/java/errorprone.xml/DontImportSun">
 		<priority>4</priority>
 	</rule>
-	<rule ref="category/java/codestyle.xml/DontImportJavaLang">
+	<rule ref="category/java/codestyle.xml/UnnecessaryImport">
 		<priority>4</priority>
 	</rule>
 	<rule ref="category/java/errorprone.xml/MissingStaticMethodInNonInstantiatableClass">
@@ -169,10 +160,7 @@
 	<rule ref="category/java/errorprone.xml/AvoidInstanceofChecksInCatchClause">
 		<priority>4</priority>
 	</rule>
-	<rule ref="category/java/errorprone.xml/EmptyFinallyBlock">
-		<priority>2</priority>
-	</rule>
-	<rule ref="category/java/performance.xml/IntegerInstantiation">
+	<rule ref="category/java/bestpractices.xml/PrimitiveWrapperInstantiation">
 		<priority>3</priority>
 	</rule>
 	<rule ref="category/java/codestyle.xml/AvoidDollarSigns">
@@ -184,22 +172,13 @@
 	<rule ref="category/java/errorprone.xml/AvoidCallingFinalize">
 		<priority>3</priority>
 	</rule>
-	<rule ref="category/java/performance.xml/BooleanInstantiation">
-		<priority>3</priority>
-	</rule>
 	<rule ref="category/java/errorprone.xml/UnconditionalIfStatement">
 		<priority>2</priority>
-	</rule>
-	<rule ref="category/java/errorprone.xml/CloneThrowsCloneNotSupportedException">
-		<priority>3</priority>
 	</rule>
 	<rule ref="category/java/bestpractices.xml/ReplaceHashtableWithMap">
 		<priority>3</priority>
 	</rule>
 	<rule ref="category/java/errorprone.xml/AvoidDecimalLiteralsInBigDecimalConstructor">
-		<priority>3</priority>
-	</rule>
-	<rule ref="category/java/errorprone.xml/EmptyTryBlock">
 		<priority>3</priority>
 	</rule>
 	<rule ref="category/java/design.xml/SignatureDeclareThrowsException">
@@ -212,9 +191,6 @@
 		<priority>3</priority>
 	</rule>
 	<rule ref="category/java/design.xml/ExceptionAsFlowControl">
-		<priority>3</priority>
-	</rule>
-	<rule ref="category/java/errorprone.xml/EmptyInitializer">
 		<priority>3</priority>
 	</rule>
 	<rule ref="category/java/errorprone.xml/FinalizeDoesNotCallSuperFinalize">
