@@ -13,8 +13,8 @@ if [ ! $# -eq 2 ]; then
     echo "Example: $0 0.33.0 0.34.0"
     exit 1;
 else
-   isValidVersionParam $1
-   isValidVersionParam $2
+   isValidVersionParam "$1"
+   isValidVersionParam "$2"
 fi
 
 # The actual release & snapshot versions
@@ -23,42 +23,36 @@ SNAPSHOT_VERSION="$2"-SNAPSHOT
 
 git checkout develop
 
-./mvnw versions:set -DnewVersion=${SNAPSHOT_VERSION}
-./mvnw versions:set-property -Dproperty=code-conventions.version -DnewVersion=${SNAPSHOT_VERSION}
-./mvnw install
-./mvnw versions:set-property -Dproperty=code-conventions.version -DnewVersion=${RELEASE_VERSION}
-./mvnw versions:set -DnewVersion=${RELEASE_VERSION}
-./mvnw versions:commit
-
-# maven-enforcer-plugin check fails when updateDependencies is activated.
-# Thus we have to update the versions in such a complicated fashion.
-./mvnw -U jgitflow:release-start -DreleaseVersion=${RELEASE_VERSION} -DdevelopmentVersion=${SNAPSHOT_VERSION} -DupdateDependencies=false -DallowUntracked=true
-
-mvn versions:set-property -Dproperty=code-conventions.version -DnewVersion=${RELEASE_VERSION}
-mvn versions:set -DnewVersion=${RELEASE_VERSION}
-mvn versions:commit
+./mvnw versions:set "-DnewVersion=${SNAPSHOT_VERSION}" && ./mvnw versions:commit
+./mvnw versions:set-property -Dproperty=code-conventions.version "-DnewVersion=${SNAPSHOT_VERSION}" && ./mvnw versions:commit
+./mvnw clean install
+./mvnw versions:set-property -Dproperty=code-conventions.version "-DnewVersion=${RELEASE_VERSION}" && ./mvnw versions:commit
+./mvnw versions:set "-DnewVersion=${RELEASE_VERSION}" && ./mvnw versions:commit
 
 git add -u
 git commit -m "Update pom.xml for release/$RELEASE_VERSION"
+git checkout master
+git merge develop
 
-# Update release version in develop branch to avoid merge conflicts
-git checkout develop
-git pull
-mvn versions:set -DnewVersion=${RELEASE_VERSION}
-mvn versions:commit
+./mvnw install
+./mvnw versions:set-property -Dproperty=code-conventions.release.version "-DnewVersion=${RELEASE_VERSION}"
+./mvnw versions:commit
+./mvnw install
 
 git add -u
-git commit -m "updating develop versions to master versions to avoid merge conflicts"
-
-## Der Befehl hat irgendwie zu einem Fehler maven-enforcer error geführt aber es hat trotzdem funktioniert!?
-mvn -U jgitflow:release-finish -DnoReleaseBuild=false -DupdateDependencies=false -DautoVersionSubmodules=false
+git commit -m "release/$RELEASE_VERSION"
+git tag "$RELEASE_VERSION"
 
 # Set snapshot version
 git checkout develop
-mvn versions:set-property -Dproperty=code-conventions.version -DnewVersion=${SNAPSHOT_VERSION}
-mvn versions:set -DnewVersion=${SNAPSHOT_VERSION}
-mvn versions:commit
+git merge master
+./mvnw versions:set-property -Dproperty=code-conventions.version "-DnewVersion=${SNAPSHOT_VERSION}" && ./mvnw versions:commit
+./mvnw versions:set-property -Dproperty=code-conventions.release.version "-DnewVersion=${SNAPSHOT_VERSION}" && ./mvnw versions:commit
+./mvnw versions:set "-DnewVersion=${SNAPSHOT_VERSION}" && ./mvnw versions:commit
 
 git add -u
 git commit -m "Update pom.xml for $SNAPSHOT_VERSION development"
-git push
+
+git push -u origin develop
+git push -u origin master
+git push origin "$RELEASE_VERSION"
