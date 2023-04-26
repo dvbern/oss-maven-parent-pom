@@ -765,7 +765,7 @@
         <code-conventions.release.version>5.0.1-SNAPSHOT</code-conventions.release.version>
 
         <!-- spotbugs-maven-plugin -->
-        <spotbugs-maven-plugin.version>4.7.3.0</spotbugs-maven-plugin.version>
+        <spotbugs-maven-plugin.version>4.7.3.4</spotbugs-maven-plugin.version>
 
         <!-- maven-checkstyle-plugin -->
         <maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
@@ -775,9 +775,9 @@
         <maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
 
         <!-- maven-compiler-plugin -->
-        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
-        <maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
-        <maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+        <maven-compiler-plugin.target>11</maven-compiler-plugin.target>
+        <maven-compiler-plugin.source>11</maven-compiler-plugin.source>
         <maven-compiler-plugin.debug>true</maven-compiler-plugin.debug>
 
         <!-- maven-dependency-plugin -->
@@ -873,10 +873,10 @@
         <maven-project-info-reports-plugin.version>3.4.2</maven-project-info-reports-plugin.version>
 
         <!-- maven-resources-plugin -->
-        <maven-resources-plugin.version>3.3.0</maven-resources-plugin.version>
+        <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
 
         <!-- maven-site-plugin -->
-        <maven-site-plugin.version>4.0.0-M5</maven-site-plugin.version>
+        <maven-site-plugin.version>4.0.0-M7</maven-site-plugin.version>
         <maven-site-plugin.locales>de_CH</maven-site-plugin.locales>
         <maven-site-plugin.skip>false</maven-site-plugin.skip>
         <maven-site-plugin.skipDeploy>false</maven-site-plugin.skipDeploy>
@@ -885,10 +885,10 @@
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
 
         <!-- maven-surefire-plugin -->
-        <maven-surefire-plugin.version>3.0.0-M9</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.0.0</maven-surefire-plugin.version>
 
         <!-- maven-surefire-report-plugin -->
-        <maven-surefire-report-plugin.version>3.0.0-M9</maven-surefire-report-plugin.version>
+        <maven-surefire-report-plugin.version>3.0.0</maven-surefire-report-plugin.version>
 
         <!-- maven-war-plugin -->
         <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
