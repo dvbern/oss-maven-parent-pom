@@ -761,7 +761,7 @@
         ${project.version} gesetzt werden, weil dann erbende Projekte die ${project.version} überschreiben.
          -->
         <code-conventions.version>5.0.1</code-conventions.version>
-        <code-conventions.release.version>5.0.1-SNAPSHOT</code-conventions.release.version>
+        <code-conventions.release.version>5.0.1</code-conventions.release.version>
 
         <!-- spotbugs-maven-plugin -->
         <spotbugs-maven-plugin.version>4.8.5.0</spotbugs-maven-plugin.version>
