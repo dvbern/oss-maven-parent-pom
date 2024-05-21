@@ -19,7 +19,7 @@
 
     <groupId>ch.dvbern.oss.maven</groupId>
     <artifactId>parent</artifactId>
-    <version>5.0.1</version>
+    <version>5.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Maven OSS Parent POM der DV Bern AG</name>
@@ -760,8 +760,8 @@
         Diese Version muss der ${project.version} entsprechen. Leider kann sie nicht per Variable
         ${project.version} gesetzt werden, weil dann erbende Projekte die ${project.version} überschreiben.
          -->
-        <code-conventions.version>5.0.1</code-conventions.version>
-        <code-conventions.release.version>5.0.1</code-conventions.release.version>
+        <code-conventions.version>5.0.2-SNAPSHOT</code-conventions.version>
+        <code-conventions.release.version>5.0.2-SNAPSHOT</code-conventions.release.version>
 
         <!-- spotbugs-maven-plugin -->
         <spotbugs-maven-plugin.version>4.8.5.0</spotbugs-maven-plugin.version>
