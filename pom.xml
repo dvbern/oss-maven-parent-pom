@@ -146,7 +146,6 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
                     <version>${versions-maven-plugin.version}</version>
-                    <inherited>false</inherited>
                     <dependencies>
                         <dependency>
                             <groupId>ch.dvbern.oss.maven</groupId>
@@ -765,26 +764,26 @@
         <code-conventions.release.version>5.0.1-SNAPSHOT</code-conventions.release.version>
 
         <!-- spotbugs-maven-plugin -->
-        <spotbugs-maven-plugin.version>4.7.3.4</spotbugs-maven-plugin.version>
+        <spotbugs-maven-plugin.version>4.8.5.0</spotbugs-maven-plugin.version>
 
         <!-- maven-checkstyle-plugin -->
-        <maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
-        <maven-checkstyle.version>10.7.0</maven-checkstyle.version>
+        <maven-checkstyle-plugin.version>3.3.1</maven-checkstyle-plugin.version>
+        <maven-checkstyle.version>10.16.0</maven-checkstyle.version>
 
         <!-- maven-clean-plugin -->
-        <maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
+        <maven-clean-plugin.version>3.3.2</maven-clean-plugin.version>
 
         <!-- maven-compiler-plugin -->
-        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <maven-compiler-plugin.target>11</maven-compiler-plugin.target>
         <maven-compiler-plugin.source>11</maven-compiler-plugin.source>
         <maven-compiler-plugin.debug>true</maven-compiler-plugin.debug>
 
         <!-- maven-dependency-plugin -->
-        <maven-dependency-plugin.version>3.5.0</maven-dependency-plugin.version>
+        <maven-dependency-plugin.version>3.6.1</maven-dependency-plugin.version>
 
         <!-- maven-deploy-plugin -->
-        <maven-deploy-plugin.version>3.1.0</maven-deploy-plugin.version>
+        <maven-deploy-plugin.version>3.1.2</maven-deploy-plugin.version>
         <maven-deploy-plugin.deployAtEnd>true</maven-deploy-plugin.deployAtEnd>
         <maven-deploy-plugin.skip>false</maven-deploy-plugin.skip>
         <maven-deploy-plugin.altDeploymentRepository />
@@ -798,7 +797,7 @@
         <maven-ejb-plugin.version>3.2.1</maven-ejb-plugin.version>
 
         <!-- maven-enforcer-plugin -->
-        <maven-enforcer-plugin.version>3.2.1</maven-enforcer-plugin.version>
+        <maven-enforcer-plugin.version>3.4.1</maven-enforcer-plugin.version>
         <!-- If set to true, enforcing rules are skipped. -->
         <maven-enforcer-plugin.skip>false</maven-enforcer-plugin.skip>
         <!-- If set to false, even SNAPSHOT version may not define SNAPSHOT dependencies. -->
@@ -843,55 +842,55 @@
         <maven-enforcer-plugin.evaluateBeanshell.condition>true</maven-enforcer-plugin.evaluateBeanshell.condition>
 
         <!-- Supported maven version -->
-        <maven-enforcer-plugin.requireMavenVersion.version>[3.8.7,)</maven-enforcer-plugin.requireMavenVersion.version>
+        <maven-enforcer-plugin.requireMavenVersion.version>[3.9.6,)</maven-enforcer-plugin.requireMavenVersion.version>
 
         <!-- maven-failsafe-plugin -->
-        <maven-failsafe-plugin.version>3.0.0-M9</maven-failsafe-plugin.version>
+        <maven-failsafe-plugin.version>3.2.5</maven-failsafe-plugin.version>
 
         <!-- maven-gpg-plugin -->
-        <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
+        <maven-gpg-plugin.version>3.2.4</maven-gpg-plugin.version>
 
         <!-- maven-install-plugin -->
-        <maven-install-plugin.version>3.1.0</maven-install-plugin.version>
+        <maven-install-plugin.version>3.1.2</maven-install-plugin.version>
 
         <!-- maven-versions-plugin -->
-        <versions-maven-plugin.version>2.14.2</versions-maven-plugin.version>
+        <versions-maven-plugin.version>2.16.2</versions-maven-plugin.version>
 
         <!-- maven-jar-plugin -->
-        <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
+        <maven-jar-plugin.version>3.4.1</maven-jar-plugin.version>
 
         <!-- maven-javadoc-plugin -->
-        <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
 
         <!-- maven-jxr-plugin -->
-        <maven-jxr-plugin.version>3.3.0</maven-jxr-plugin.version>
+        <maven-jxr-plugin.version>3.3.2</maven-jxr-plugin.version>
 
         <!-- maven-pmd-plugin -->
-        <maven-pmd-plugin.version>3.20.0</maven-pmd-plugin.version>
+        <maven-pmd-plugin.version>3.21.0</maven-pmd-plugin.version>
 
         <!-- maven-project-info-reports-plugin -->
-        <maven-project-info-reports-plugin.version>3.4.2</maven-project-info-reports-plugin.version>
+        <maven-project-info-reports-plugin.version>3.5.0</maven-project-info-reports-plugin.version>
 
         <!-- maven-resources-plugin -->
         <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
 
         <!-- maven-site-plugin -->
-        <maven-site-plugin.version>4.0.0-M7</maven-site-plugin.version>
+        <maven-site-plugin.version>4.0.0-M14</maven-site-plugin.version>
         <maven-site-plugin.locales>de_CH</maven-site-plugin.locales>
         <maven-site-plugin.skip>false</maven-site-plugin.skip>
         <maven-site-plugin.skipDeploy>false</maven-site-plugin.skipDeploy>
 
         <!-- maven-source-plugin -->
-        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
 
         <!-- maven-surefire-plugin -->
-        <maven-surefire-plugin.version>3.0.0</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
 
         <!-- maven-surefire-report-plugin -->
-        <maven-surefire-report-plugin.version>3.0.0</maven-surefire-report-plugin.version>
+        <maven-surefire-report-plugin.version>3.2.5</maven-surefire-report-plugin.version>
 
         <!-- maven-war-plugin -->
-        <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
+        <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
 
         <!-- findbugs-maven-plugin -->
         <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
@@ -900,7 +899,7 @@
         <taglist-maven-plugin.version>3.0.0</taglist-maven-plugin.version>
 
         <!-- jgitflow-maven-plugin -->
-        <jgitflow-maven-plugin.version>1.0-m9</jgitflow-maven-plugin.version>
+        <jgitflow-maven-plugin.version>1.0-m10</jgitflow-maven-plugin.version>
 
         <!-- nexus-staging-maven-plugin -->
         <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
